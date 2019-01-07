@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Scheduler</title>
+</head>
+<body>
+<h1>Scheduler</h1>
+<form  action="Submit" method="Post">
+Date From:<input type="date" name="datefrom">
+To Date:<input type="date" name="todate"><br><br><br>
+Medium:<select name="pe">
+<option value="Phone">Phone</option>
+</select><br><br>
+
+Source:&nbsp;&nbsp;<select name="Source">
+<option value="Source1">Source 1</option>
+<option value="Source2">Source 2</option>
+<option value="Source3">Source 3</option>
+<option value="All">All</option>
+
+</select><br><br>
+
+Content:<textarea rows="10" name="text"></textarea><br><br>
+
+
+Schedule Time From:<input type="datetime-local" name="Schedulerfrom"><br><br>
+Scheduler Time To:<input type="datetime-local" name="Schedulerto"><br><br>
+Interval Time(mins):<input type="number" name="Interval" min="1" max="60"><br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>

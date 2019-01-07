@@ -1,0 +1,115 @@
+
+           #section-reasons-to-teach{
+                margin: 25px 72px 55px 72px;
+				
+            }
+            #section-teacher-expectation{
+                padding: 25px 72px 55px 72px;
+            }
+            
+            .reasons-to-teach .reason{
+                margin-top: 48px;
+            }
+            
+            .reasons-to-teach .reason:first-child{
+                font-size: 30px;
+                color: #e6632f;
+                line-height: 1.15em;
+                /*padding-top: 55px;*/
+            }
+            
+            .reasons-to-teach .reasonheader{
+                padding-top:55px;
+            }
+            
+            
+           
+            
+            .reasons-to-teach .reason .reason-icon{
+                border: 1px solid #737477;
+                border-radius: 50%;
+                width: 43px;
+                height: 43px;
+                padding: 9px 8px;
+            }
+            .reasons-to-teach .reason .reson-chemistry{
+               padding: 3px 8px;
+            }
+            .reasons-to-teach .reason .reason-icon i{
+                color: #737477;
+                font-size: 24px;
+            }
+            
+            .reasons-to-teach .reason .purpose-point{
+                font-size: 18px;
+                color: #333333;
+                margin: 17px 0 10px 0;
+                line-height: 1.1em;
+            }
+            
+            .reasons-to-teach .reason .purpose-text{
+                font-size: 14px;
+                color: #737477;
+                padding-right: 10px;
+                line-height: 1.25em;
+                font-weight: 400;
+            }
+            
+
+           
+
+           
+           
+            
+            @media (max-width: 768px){
+                #section-reasons-to-teach{
+                      margin: 25px 20px 25px 20px;
+                }
+               
+                .reasons-to-teach .header{
+                    padding-top: 10px;
+                    margin-top: 10px;
+                }
+                
+              
+               
+                .reasons-to-teach .reason .reason-icon{
+                    left: 50%;
+                    position: relative;
+                    margin-left: -22px;
+                }
+                
+               
+          option{color:black;}
+.btn-wid {
+    width: 170px;
+}
+
+.hero{display:block;position:relative}
+.hero .hero-image{
+width:100%;
+background-size:cover;
+background-position:center center;
+background-repeat:no-repeat}
+
+.hero .hero-overlay{
+width:100%;
+min-height:100%;
+position:relative;
+top:10%;
+left:0;
+background-color:rgba(60,59,63,.6)}
+.hero 
+.hero-content{
+width:100%;
+position:relative;
+top:10%;left:0;
+text-align:center;padding-left:2rem;padding-right:2rem}
+
+
+#fade-quote-carousel blockquote p{
+    color:#000;
+}
+.row{overflow:hidden;
+	}
+	

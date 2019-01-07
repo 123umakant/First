@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Student SignUp Enquiry Form</title>
+</head>
+<body>
+<h1>Student SignUp Enquiry Form</h1>
+<form action="/studentenquiry" method="post">
+Enquiry ID:<input type="number" name="enquiry id" min="1" max="20"><br><br>
+Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="date"><br><br>
+Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="name"><br><br>
+Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="contact"><br><br>
+Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="email"><br><br>
+Address:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="address"><br><br>
+Class:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="class"><br><br>
+Subject:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="subject"><br><br>
+Where you want to learn?<select name="LearningType">
+<option > </option>
+<option value="Home Tuition at My Home">Home Tuition at My Home</option>
+<option value="Willing to travel to Teacher's Home">Willing to travel to Teacher's Home</option>
+<option value="Online Class (via Skype, Hangout etc)">Online Class (via Skype, Hangout etc)</option>
+</select><br><br>
+Your approximate Monthly Budget: <select name="MonthlyBudget">
+<option > </option>
+<option value="5400 - 6000">Basic Rs.5400 - 6000 (20 Sessions in month)
+Teacher's experience upto 2 yrs</option>
+<option value="6000 - 6600">Standard Rs.6000 - 6600 (20 Sessions in month)
+Teacher's experience 2-5 yrs</option>
+<option value="6600-8000">Standard Rs.6600-8000 (20 Sessions in month)
+Teacher's experience 2-5 yrs</option>
+</select><br><br>
+Alternate Contact:<input type="text" name="alt_contact" id="alt-contact"><br><br>
+Message:<textarea rows="" cols="" name="message"></textarea><br><br>
+ 
+<input type="submit" value="Submit">
+
+
+</form>
+</body>
+</html>

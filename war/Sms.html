@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Send SMS Here</title>
+</head>
+<body>
+<h1>Send SMS/Email</h1>
+<form  action="Sms.jsp" method="Post">
+Date From:<input type="date" name="datefrom">
+To Date:<input type="date" name="todate"><br><br><br>
+Medium:<select name="pe">
+<option value="Phone">Phone</option>
+<option value="Email">Email</option>
+</select><br><br>
+
+Source:&nbsp;&nbsp;<select name="Source">
+<option value="Source1">Source 1</option>
+<option value="Source2">Source 2</option>
+<option value="Source3">Source 3</option>
+<option value="All">All</option>
+
+</select><br><br>
+
+Content:<textarea rows="10" name="text"></textarea><br><br>
+<input type="submit" value="Send">
+
+</form>
+</body>
+</html>

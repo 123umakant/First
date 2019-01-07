@@ -1,0 +1,589 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin: 0; padding: 0;}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+.clear {
+  clear: both;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.errbrdr {
+  border: 1px solid #ff563f !important;
+  box-shadow: 0 0 10px #ff563f;
+}
+.errtxt {
+  color: #ff563f;
+  font-size: 10px;
+}
+ul li{list-style: none;}
+.wrapper{width: 1100px; margin: 0 auto; display: block;}
+
+header{
+	margin: 0;
+	padding: 18px 0;
+	display: block;
+	border-bottom: 1px solid #e7e7e7;
+}
+header img{margin: 0 auto; display: block; vertical-align: middle;}
+.banner{
+	background: url(../../images/resource15/banner_two.png) no-repeat center bottom/ cover;
+	width: 100%;
+	margin: 0;
+	padding: 70px 0 65px;
+	display: block;
+	border-bottom: 1px solid #dddddd;
+}
+.banner h1{
+	text-align: center;
+	color: #000;
+	font-size: 55px;
+	font-weight: 800;
+	display: block;
+	line-height: 50px;
+	margin: 0 0 15px 0;
+	padding: 0;
+}
+.banner h2{
+	text-align: center;
+	color: #ff4f37;
+	font-size: 26px;
+	font-weight: bold;
+	display: block;
+	line-height: 33px;
+	margin: 0 0 35px 0;
+	padding: 0;
+}
+.banner .frmbox{
+	background: #ffffff;
+	width: 468px;
+	border-radius: 10px;
+	border: 2px solid #00aeff;
+	margin: 0 auto;
+	padding:20px 20px 40px;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 20px rgba(0,0,0,0.45);
+}
+.banner .frmbox h3{
+	text-align: center;
+	font-weight: 600;
+	font-size: 22px;
+	color: #1a1a1a;
+	display: block;
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+.downdrop{
+	background: #fff;
+	width: 320px;
+	height: 50px;
+	display: block;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0 auto;
+	position: relative;
+	line-height: 50px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #000;
+	text-align-last: left;
+	border: 1px solid #929292;
+	border-radius: 6px;
+}
+.downdrop:after {
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 8px solid #969696;
+    position: absolute;
+    right: 12px;
+    top: 22px;
+    content: "";
+    pointer-events: none;
+}
+.downdrop select {
+    background: 0 0;
+    width: 100%;
+    border: 0;
+    padding: 0 10px;
+    border-radius: 0;
+    color: #000;
+    vertical-align: top;
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.downdrop select option {
+    color: #000;
+    font-size: 16px;
+}
+
+/** HOW IT WORKS **/
+.hiw_student{
+	padding: 60px 0;
+	margin: 0;
+	display: block;
+}
+.hiw_student h2{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: #2b2d2d;
+	display: block;
+	margin: 0 0 60px 0;
+}
+
+.hiw_student ul{
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+.hiw_student ul li{
+	width: 328px;
+	display: inline-block;
+	margin: 0 50px 0 0;
+	padding: 0;
+	vertical-align: top;
+	position: relative;
+}
+.hiw_student ul li:last-child{margin-right: 0px;}
+.hiw_student ul li .icon_holder{
+	background: #00aeff;
+	border:2px solid #279acf;
+	border-radius: 50%;
+	width: 83px;
+	height: 83px;
+	margin: 0 auto 25px;
+	display: block;
+	font-weight: bold;
+	color: #ffffff;
+	font-size: 48px;
+	line-height: 83px;
+}
+.hiw_student ul li h2{
+	text-align: center;
+	font-size:18px;
+	font-weight: 600;
+	color: #000;
+	margin: 0 0 10px 0;
+	padding: 0;
+	text-transform: uppercase;
+	display: block;
+}
+.hiw_student ul li p{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-size: 15px;
+	line-height: 24px;
+	color: #000000;
+	font-weight: 400;
+}
+.arrow_down{width: 103px; height: 24px; position: absolute; top: 28px; right: -75px;}
+.arrow_up{width: 103px; height: 24px; position: absolute; top: 48px; right: -75px;}
+/** END HOW IT WORKS **/
+
+/* Client Testimonials */
+.client_testimonials_block{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff634d+31,f14129+100 */
+background: #ff634d; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #ff634d 31%, #f14129 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #ff634d 31%,#f14129 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #ff634d 31%,#f14129 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff634d', endColorstr='#f14129',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	
+	margin: 0;
+	padding: 80px 0;
+	display: block;
+}
+.client_testimonials_block h2{
+	text-align: center;
+	font-size: 45px;
+	font-weight: bold;
+	color: #fff;
+	display: block;
+	margin: 0 0 60px 0;
+	text-shadow: 0px 1px 2px rgba(0,0,0,0.50);
+}
+.client_testimonials_block .inner_holder{
+	width: 800px;
+	margin: 0 auto;
+	display: block;
+}
+.block{
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+.quotebg{
+	width: 47px;
+	height: 37px;
+	margin: 0 auto 30px;
+	display: block;
+}
+.block p{
+	margin: 0 0 40px 0;
+	padding: 0;
+	display: block;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 35px;
+	color: #ffffff;
+	text-align: center;
+}
+.owner_holder{
+	margin: 0 auto 15px;
+	display: block;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 2px solid #d75e4e;
+}
+.owner_holder img{max-width: 100%; height: auto;}
+.owner_holder .placeholder{
+	width: 100%;
+	height: 100%;
+	background: #ffc600;
+	line-height: 80px;
+	text-align: center;
+	color: #000;
+	font-size: 45px;
+}
+.ownername{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-size: 22px;
+	font-weight: 300;
+	color: #ffffff;
+}
+.ownername strong{font-weight: bold;}
+/* End Client Testimonials */
+
+/** HOW IT WORKS **/
+.hiw_tutor{
+	padding: 60px 0;
+	margin: 0;
+	display: block;
+}
+.hiw_tutor h2{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: #2b2d2d;
+	display: block;
+	margin: 0 0 60px 0;
+}
+
+.hiw_tutor ul{
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+}
+.hiw_tutor ul li{
+	width: 220px;
+	display: inline-block;
+	margin: 0 150px 0 0;
+	padding: 0;
+	vertical-align: top;
+	position: relative;
+}
+.hiw_tutor ul li:last-child{margin-right: 0px;}
+.hiw_tutor ul li .icon_holder{
+	width: 104px;
+    height: 104px;
+    margin: 0 auto 25px;
+    display: block;
+}
+.hiw_tutor ul li h2{
+	text-align: center;
+	font-size:18px;
+	font-weight: 600;
+	color: #000;
+	margin: 0 0 10px 0;
+	padding: 0;
+	text-transform: uppercase;
+	display: block;
+}
+.hiw_tutor ul li p{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	display: block;
+	font-size: 15px;
+	line-height: 24px;
+	color: #000000;
+	font-weight: 400;
+}
+.arrow_down{width: 103px; height: 24px; position: absolute; top: 28px; right: -75px;}
+.arrow_up{width: 103px; height: 24px; position: absolute; top: 48px; right: -75px;}
+/** END HOW IT WORKS **/
+
+/** Hiring **/
+.hiring_holder{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00aeff+28,00adfe+49,0593d6+65 */
+background: #00aeff; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #00aeff 28%, #00adfe 49%, #0593d6 65%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #00aeff 28%,#00adfe 49%,#0593d6 65%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #00aeff 28%,#00adfe 49%,#0593d6 65%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aeff', endColorstr='#0593d6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	margin: 0;
+	padding: 70px 0;
+	display: block;
+}
+.hiring_holder h2{
+	text-align: center;
+	margin: 0 0 25px 0;
+	padding: 0;
+	display: block;
+	font-size: 50px;
+	font-weight: bold;
+	text-shadow: 0px 1px 6px rgba(0,0,0,0.40);
+	color: #ffffff;
+	line-height: 50px;
+}
+.hiring_holder p{
+	text-align: center;
+	margin:0 0 40px 0;
+	padding: 0;
+	display: block;
+	font-size: 25px;
+	font-weight: 600;
+	color: #ffffff;
+}
+.hiring_holder a{
+	background: #ff4f37;
+	width: 246px;
+	height: 53px;
+	margin: 0 auto;
+	display: block;
+	border-radius: 10px;
+	line-height: 53px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 23px;
+	color: #ffffff;
+	border: 2px solid #efefef;
+	text-decoration: none;
+	box-shadow: 0px 1px 20px rgba(0,0,0,0.35);
+}
+.hiring_holder a:hover{box-shadow:none;}
+/** END Hiring **/
+footer{padding: 15px; text-align: center; font-size: 14px; color: #000000;}
+
+a.drop_query_btn{
+	background:#404040;
+	box-shadow:0 5px 10px #bbb;
+    color:#ffffff;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:400;
+    height:222px;
+    position:fixed;
+    right:0;
+    text-align:center;
+    text-decoration:none;
+    top:160px;
+    width:65px;
+    z-index:99;
+	border-radius:6px 0 0 0;
+	-moz-border-radius:6px 0 0 0;
+	-webkit-border-radius:6px 0 0 0;
+}
+
+a.drop_query_btn .drop_btn_txt{
+    color:#ffffff;
+    display:block;
+    margin-top:38px;
+	margin-left:6px;
+    transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-webkit-transform:rotate(90deg);
+    white-space:nowrap;
+}
+
+a.drop_query_btn .drop_icon_mail{
+	background-color:#ff4f37;
+    background-image:url('../../images/resource15/newmpt/icon/drop_query_mail_icon.png');
+    background-position:17px center;
+    background-repeat:no-repeat;
+    border-radius:0 0 0 6px;
+    display:block;
+    height:64px;
+    left:0;
+    position:relative;
+    top:132px;
+    width:65px;
+}
+
+/** Bottom CityList **/
+.bottom_city_list{
+	background:#F3F3F3;
+	margin: 0;
+	padding: 40px 0;
+	display: block;
+}
+.bottom_city_list h2{text-align: center; font-size: 24px; color: #2b2d2d; margin: 0 0 0 0; padding: 0;}
+.bottom_city_list ul{
+	margin: 40px 0 0 0;
+	padding: 0;
+	display: block;
+	overflow: hidden;
+}
+.bottom_city_list ul li{
+	width: 260px;
+	background: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #e7e7e7;
+	font-size: 14px;
+	padding: 14px;
+	box-sizing: border-box;
+	display:block;
+	margin: 0 20px 15px 0;
+	vertical-align: top;
+	float: left;
+	position: relative;
+}
+.bottom_city_list ul li:hover{box-shadow: 2px 2px 15px rgba(0,0,0,.10);}
+.bottom_city_list ul li:after{
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+    transform: rotate(50deg) skew(10deg);
+    right: 20px;
+	top: 22px;
+	position: absolute;
+	content: "";
+	width:9px;
+	height: 9px;
+}
+.bottom_city_list ul li a{display: block; color: #000; text-decoration:none; padding: 0 0 0 40px; outline: none;}
+.bottom_city_list ul li:nth-child(4n){margin-right: 0px;}
+
+.bottom_city_list ul li a.au,
+.bottom_city_list ul li a.hk,
+.bottom_city_list ul li a.in,
+.bottom_city_list ul li a.ku,
+.bottom_city_list ul li a.ph,
+.bottom_city_list ul li a.sg,
+.bottom_city_list ul li a.th,
+.bottom_city_list ul li a.uk{height: 21px; display: block; outline: none;}
+
+.bottom_city_list ul li a.au{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 0;}
+.bottom_city_list ul li a.hk{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -21px; }
+.bottom_city_list ul li a.in{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -42px; }
+.bottom_city_list ul li a.ku{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -63px; }
+.bottom_city_list ul li a.ph{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -84px; }
+.bottom_city_list ul li a.sg{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -105px; }
+.bottom_city_list ul li a.th{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -126px; }
+.bottom_city_list ul li a.indo{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -168px; }
+.bottom_city_list ul li a.ba{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -189px; }
+.bottom_city_list ul li a.uk{background:url('../../images/resource15/city/citystripe.png') no-repeat 0 -147px; }
+
+/** End Bottom CityList **/
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+.wrapper{width: 94%}
+ header{padding: 13px 0;}
+.banner{padding:50px 30px 70px; width: auto; box-sizing: border-box;}
+.banner h1{font-size: 40px; line-height: 24px;}
+.banner h2{font-size: 19px;}
+
+.arrow_down,.arrow_up{display: none;}
+.hiw_student ul li{margin-right: 20px; width: 30%;}
+.hiw_student ul li .icon_holder{width: 73px; height: 73px; line-height: 73px;}
+.hiw_student ul li h2{font-size: 16px; margin-bottom: 10px;}
+.hiw_student ul li p{line-height: 22px; font-size: 14px;}
+	
+.client_testimonials_block .inner_holder{width: 600px; display: none;}
+.client_testimonials_block{padding: 50px 0;}
+	.client_testimonials_block h2{font-size: 36px;}
+	
+.hiw_tutor ul li{margin-right: 20px; width: 30%;}
+.hiw_tutor ul li .icon_holder{width: 84px; height: 84px; }
+.hiw_tutor ul li h2{font-size: 16px; margin-bottom: 10px;}
+.hiw_tutor ul li p{line-height: 22px; font-size: 14px;}
+.hiw_tutor ul li .icon_holder img{max-width: 100%; height: auto;}
+	
+	.hiring_holder{padding: 40px 0;}
+	.hiring_holder h2{margin-bottom: 16px;}
+	.hiring_holder p{font-size: 19px; margin-bottom: 30px;}
+	a.drop_query_btn{width: 52px;}
+	a.drop_query_btn .drop_icon_mail{height: 45px; background-position: 12px center;}
+	.bottom_city_list ul li{width: 169px; margin-right: 15px;}
+	.bottom_city_list h2{font-size: 19px;}
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+.wrapper{width: 96%}
+	.hiw_student ul li{width: 29%;}
+	.bottom_city_list ul li{width: 230px;}
+}
+
+@media only screen and (max-width: 767px) {
+	.wrapper{width: 96%}
+	.drop_query_btn{display: none;}
+	.banner h1{font-size: 30px; line-height: 36px;}
+	.banner h2 {font-size: 18px; font-weight: 400; line-height: 26px; margin: 0 0 16px 0;}
+	.banner .frmbox{width: 90%;}
+	.downdrop{width: auto;}
+	.banner{padding: 30px 0 80px;}
+	.banner .frmbox h3{font-size: 18px; font-weight: bold;}
+	
+	.hiw_student{padding: 30px 0;}
+	.hiw_student h2{font-size: 20px; margin: 0 0 30px 0;}
+	.arrow_up,
+	.arrow_down{display: none;}
+	.hiw_student ul li{display: block; width: 100%; margin: 0 0 20px 0; overflow: hidden; padding: 0 10px 20px 10px; border-bottom: 1px solid #C2D1DC; box-sizing: border-box;}
+	.hiw_student ul li:last-child{margin-bottom: 0px;}
+	.hiw_student ul li .icon_holder{float: left; width: 55px; height: 55px; line-height: 55px; margin: 0 15px 0 0; font-size: 35px;}
+	.hiw_student ul li .textblock{width: 71%; text-align: left; float: left;}
+	.hiw_student ul li h2{text-align: left; font-size: 16px; font-weight: bold; margin-bottom: 10px;}
+	.hiw_student ul li p{text-align: left; font-size: 14px; line-height: 20px;}
+	.hiw_student ul li:last-child{padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px;}
+	
+	.client_testimonials_block{padding: 32px 0;}
+	.client_testimonials_block h2 {font-size: 32px; margin: 0 0 30px 0; line-height: 40px;}
+	.client_testimonials_block .inner_holder{width: 90%;}
+	.block p{font-size: 17px; line-height: 25px;}
+	
+	.hiw_tutor{padding: 30px 0;}
+	.hiw_tutor h2{font-size: 20px; margin: 0 0 30px 0;}
+	.hiw_tutor ul li{display: block; width: 100%; margin: 0 0 20px 0; overflow: hidden; padding: 0 10px 20px 10px; border-bottom: 1px solid #C2D1DC; box-sizing: border-box;}
+	.hiw_tutor ul li:last-child{margin-bottom: 0px;}
+	.hiw_tutor ul li .icon_holder{float: left; width: 65px; height: 65px; margin: 0 15px 0 0;}
+	.hiw_tutor ul li .icon_holder img{max-width: 100%; height: auto;}
+	.hiw_student ul li .textblock{width: 71%; text-align: left; float: left;}
+	.hiw_tutor ul li h2{text-align: left; font-size: 16px; font-weight: bold; margin-bottom: 10px;}
+	.hiw_tutor ul li p{text-align: left; font-size: 14px; line-height: 20px;}
+	.hiw_tutor ul li:last-child{padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px;}
+	
+	.hiring_holder h2{font-size: 33px; margin-bottom: 6px;}
+	.hiring_holder p {font-size: 16px; margin-bottom: 26px; line-height: 26px;}
+	.hiring_holder a{width: 185px; height: 45px; line-height: 45px;}
+	.hiring_holder {padding: 35px 0;}
+	footer{font-size: 12px;}
+	
+	.bottom_city_list{padding: 20px 0;}
+	.bottom_city_list h2{margin-bottom: 20px;}
+	.bottom_city_list ul{text-align: center; display: table; width: auto; margin: 30px auto 0;}
+	.bottom_city_list ul li{margin: 0 0 5px 0; text-align: left; float: none; display: block;}
+	.bottom_city_list h2{font-size: 16px; line-height: 26px; font-weight: 600;}
+}
+
+

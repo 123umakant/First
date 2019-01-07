@@ -1,0 +1,696 @@
+<%@page import="com.gharpeshiksha.Distance"%>
+<%@page import="sun.net.www.content.text.plain"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.security.*" %>
+<%@ page import="com.gharpeshiksha.entity.*" %>
+<%@ page import="static com.gharpeshiksha.database.OfyService.*,java.util.* " %>
+<%@ page import="com.googlecode.objectify.*" %>
+<% 
+if(session.getAttribute("login")==null){
+%><html><body><h1>You are not logged in. For log in to your profile <a href="https://goo.gl/X7XCnI">Click here.</a></h1></body></html><%	
+}else if(session.getAttribute("login").equals("yes"))
+		{ %>
+
+<html>
+<head>
+<title>Ghar Pe Shiksha : Home Tuition in Delhi</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/testimonial.js"></script>
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Coaching Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta name="theme-color" content="#43c0f6">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--Google Fonts-->
+<link href='//fonts.googleapis.com/css?family=Hind:400,300' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+<!--google fonts-->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+</script>
+<!-- //end-smoth-scrolling -->
+<!-- animated-css -->
+		<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="js/wow.min.js"></script>
+		<script>
+		 new WOW().init();
+		</script>
+<!-- animated-css -->
+<script src="js/bootstrap.min.js"></script>
+<link href="css/galleryeffect.css" rel="stylesheet" type="text/css" media="all" />
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-89128249-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/58116dbcc7829d0cd36c20e2/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+<%TutorDetail tut=ofy().load().type(TutorDetail.class).id(((Long)session.getAttribute("tutor")).longValue()).now();
+  TutorServices ts=ofy().load().type(TutorServices.class).id(((Long)session.getAttribute("tutor")).longValue()).now();
+ 
+ 
+  %>
+<%List<Areas> areas=ofy().load().type(Areas.class).filter("tutor", Ref.create(tut)).list();
+ Iterator<Areas> area=areas.iterator();%>
+<%List<Subjects> subjects=ofy().load().type(Subjects.class).filter("tutor", Ref.create(tut)).list();
+ Iterator<Subjects> sub=subjects.iterator();
+ 
+ Plans pl=ofy().load().type(Plans.class).filter("tutor", Ref.create(tut)).first().now();
+ %>
+<style>
+.panel {
+    border-radius: 5px;
+}
+.panel-default {
+    border-color: #ddd;
+}
+.panel-default>.panel-heading {
+    color: #000000;
+    background-color: #f2f2f2;
+    border-color: #03A9F4;
+    border-width: 2px;
+}
+.panel>.panel-heading {
+    border-radius: 0px;
+    font-size: 18px;
+}
+.profile_cat li.pf_row {
+    padding: 5px 0px;
+    overflow: hidden;
+    clear: both;
+}
+.profile_cat li .field {
+    width: 35%;
+    float: left;
+    word-wrap: break-word;
+}
+.profile_cat li .field_answer {
+    width: 65%;
+    float: left;
+    word-wrap: break-word;
+}
+.profile_cat li .field label {
+    font-size: 14px;
+    color: #575757;
+    white-space: normal;
+    background: #f2f2f2;
+    border-radius: 0px;
+    font-weight: bold;
+    padding: 5px 9px;
+}
+</style>
+<body>
+<div class="container">
+	<div class="fixed-header">	
+
+		    <div class="navbar-wrapper">
+		      <div class="container">
+              
+		        <nav class="navbar navbar-inverse navbar-static-top">
+		             <div class="navbar-header">
+			              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			                <span class="sr-only">Toggle navigation</span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			              </button>
+			              <div class="logo wow slideInLeft" data-wow-delay="0.3s" style="width:80%;height:auto">
+			                    <a class="navbar-brand" href="#"><img class="img-responsive" src="images/new_01.png" style="" /></a>
+			              </div>
+			          </div>
+		            <div id="navbar" class="navbar-collapse collapse">
+		            <nav class="cl-effect-1">
+		              <ul class="nav navbar-nav">
+		                
+                      
+                        
+						<li><a href="changepassword.jsp" class="scroll">Change Password</a></li>
+				
+                 
+           
+						<li><a href="/signout" class="scroll">Log Out</a></li>						
+		              </ul>
+		            </nav>
+		            <!-- script-for sticky-nav -->
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header").addClass("fixed");
+				}else{
+					$(".header").removeClass("fixed");
+				}
+			 });
+			 
+		});
+		</script>
+		<!-- /script-for sticky-nav -->
+
+		            </div>
+		            <div class="clearfix"> </div>
+		             </nav>
+		          </div>
+		           <div class="clearfix"> </div>
+		    </div>
+	 </div>
+</div>
+<!--header end here-->
+
+<div style="padding:2em;" id="about">
+	<div class="container">
+		<div class="about-main">
+			<div class="about-top wow fadeInDown" style="padding-bottom: 0em;" data-wow-delay="0.3s">
+				<h2 style="color:#337ab7;">Your Profile</h2>
+			
+				<span class="heading-line"> </span>
+			<%if(pl==null){ %>	<p>To get first preference,Become our Paid Tutor</p>
+			<%} %>
+			</div>		
+	</div>
+		</div>
+	</div>
+
+
+
+<!-- Modal -->
+<div id="confirm" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+    Classes for your preferred subjects within your selected area around your location will not be notified to you through SMS and Email.
+      </div>
+      <div class="modal-footer">
+ <form action="/unsubscribe" method="post"><input type="hidden" value="<%=tut.getContact()%>" name="phone"><button type="submit" class="btn btn-default" >Yes, Unsubscribe me</button></form><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<form id="update" action="/tutor-location.jsp?id=<%=tut.getContact()%>" method="post">
+</form>
+<form action="/classesavailable" id="classes" method="post">
+</form>
+<div class=" col-sm-4 col-md-3 sidebar-col">
+			<div class="pad-m-tb">
+				<link href="styles/styles.css" rel="stylesheet" type="text/css">
+<div class="profile-mini">
+	<div class="profile-mini-img">
+		<%if(tut.getProfile_pic_url()!=null){ %><a href="#"><img class="img-responsive" src="<%=tut.getProfile_pic_url()%>" onerror="this.src='media/pics/no_photo.gif';" alt="user photo"></a>
+		<%}else{ 
+			if(tut.getGender().equals("male")){ %>
+	<a href="#"><img src="image/default-male.jpg" class="img-responsive" alt="user photo"></a>
+		<%}else{ %>
+		<a href="#"><img src="image/default-female.jpg" class="img-responsive" alt="user photo"></a>
+		<%} }%>
+	</div>
+	<br>
+	<h4 class="profile-user">
+		<strong><%=tut.getName().toUpperCase()%></strong></h4>
+		
+			
+
+		
+		<br>
+		Tutor Id: <%=tut.getTut_id()%>
+	<br>
+		<br>
+		Contact Number<p id="test"><%=tut.getContact()%></p>
+	<!-- 	<a class="button2" href="request-tutor.php">Update Profile Picture</a>
+	 -->
+	 <p></p>
+		<br>
+	
+</div>
+<%if(pl!=null){%><div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+Student View Remaining<span class="badge badge-pill badge-danger"><%=pl.getContact_views()%></span><br>
+</div>
+<%} %>
+<div style="background-color:#f2f2f2;border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="#">My Account</a><br>
+</div>
+<div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="edit-profile.jsp">Edit Profile</a><br>
+</div>
+<div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="classes-for-me.jsp">Recent Classes for Me</a><br>
+</div>
+<div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="newallenquiry.jsp?pagenum=1">View All Enquiries</a><br>
+</div>
+<!-- <div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="#" onclick="document.getElementById('classes').submit();">Classes for me</a>
+</div>
+ -->
+<div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="#" onclick="document.getElementById('update').submit();">Update My Location</a>
+</div>
+
+<!-- 
+<div style="border: 1px solid #e3e3e3;text-align:center;padding:6px;">
+<a href="allenquiry.jsp?pagenum=1">Suggested Tests <span class="badge badge-pill badge-danger">New</span></a><br>
+</div>
+ -->
+</div>
+		</div>
+
+
+<div class="col-xs-12 col-sm-8 col-md-9 content-col">
+			<div class="pad-m-tb">
+<div class="panel panel-default profile_cat" id="cat_6">
+	<div class="panel-heading">Basic Info</div>
+		<div class="panel-body">
+			<ul class="cat_content list-unstyled">
+				
+					<li id="row_f16" class="pf_row">
+						<div class="field">
+							<label class="badge">Name:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getName()%></div>
+						</div>
+					</li>
+				
+				
+					<li id="row_f19" class="pf_row">
+						<div class="field">
+							<label class="badge">Gender:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getGender()%></div>
+						</div>
+					</li>
+		
+				
+							<li id="row_f17" class="pf_row">
+						<div class="field">
+							<label class="badge">Alternate Contact:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getAlt_contact()%></div>
+						</div>
+					</li>
+		
+					<li id="row_f17" class="pf_row">
+						<div class="field">
+							<label class="badge">Email:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getEmail()%></div>
+						</div>
+					</li>
+		
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Date Of Birth:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getDob()%></div>
+						</div>
+					</li>
+					
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Current Address:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getCurrent_add()%></div>
+						</div>
+					</li>
+					
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Permanent Address:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getPermanent_add() %></div>
+						</div>
+					</li>
+				
+			</ul>
+		</div>
+</div>
+
+<div class="panel panel-default profile_cat" id="cat_6">
+	<div class="panel-heading">Education and Experience</div>
+		<div class="panel-body">
+			<ul class="cat_content list-unstyled">
+				
+					<li id="row_f16" class="pf_row">
+						<div class="field">
+							<label class="badge">Qualification:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getQualification()%></div>
+						</div>
+					</li>
+				
+				
+					<li id="row_f19" class="pf_row">
+						<div class="field">
+							<label class="badge">Experience:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getExperience() %> years</div>
+						</div>
+					</li>
+		
+				
+							<li id="row_f17" class="pf_row">
+						<div class="field">
+							<label class="badge">About Me:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=tut.getAbout()%></div>
+						</div>
+					</li>
+		
+					<li id="row_f17" class="pf_row">
+						<div class="field">
+							<label class="badge">Teaching Mode:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%=Arrays.toString(tut.getTeaching_mode())%></div>
+						</div>
+					</li>
+				
+			</ul>
+		</div>
+</div>
+
+<div class="panel panel-default profile_cat" id="cat_6">
+	<div class="panel-heading">Subjects</div>
+		<div class="panel-body">
+			<ul class="cat_content list-unstyled">
+				
+				
+		
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Subjects Preffered:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><table class="table-responsive">
+    <%while(sub.hasNext()){
+    	Subjects subject=sub.next();
+    %><tr>
+    <td><%=subject.getCourse() %></td>
+    <td><%=Arrays.toString(subject.getSubjects()) %></td>
+    </tr><%} %></table></div>
+						</div>
+					</li>
+					
+					
+				
+			</ul>
+		</div>
+</div>
+
+
+<div class="panel panel-default profile_cat" id="cat_6">
+	<div class="panel-heading">My Account</div>
+		<div class="panel-body">
+			<ul class="cat_content list-unstyled">
+				
+				
+		
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Subscription Details:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer">
+							<table class="table-responsive">
+    						<%if(pl!=null){ %>
+	<tr><td>Plan Name</td><td><%=pl.getPlan() %></td><tr>
+    <tr><td>Amount Paid</td><td><%=pl.getAmount() %></td><tr>
+    <tr><td>Expiry Date</td><td><%=pl.getExpiry_date()%></td><tr>
+    <%if(!(pl.getContact_views()==0)){ %>
+    <tr><td>Contact Views Remaining</td><td><%=pl.getContact_views()%></td></tr>
+    <%}%>
+    <%}else{ %>
+    <tr><td>You are not a paid member yet.To become paid see <a data-target="#plans" data-toggle="modal" href="#plans">Pricing</a> and you can <a href="payment.html">Pay Online</a></td></tr>
+    <%}%>
+    </table>
+    
+    </div>
+						</div>
+					</li>
+					
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Enquiries Notify Through:</label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><%if(ts.getNotifications()==null){ %>
+    SMS and Email <a data-target="#confirm" data-toggle="modal" href="#confirm">Unsubscribe me from SMS and Email</a>
+    <%}else{ %>
+    Unsubscribed from SMS and Email notifications.
+    <%}%></div>
+						</div>
+					</li>
+					
+					<%  
+					ArrayList<Long> list = new ArrayList<Long>(ts.getClasses_sent());
+  if(list!=null){Collections.reverse(list);
+  list.remove(list.size()-1);
+  }
+  
+  %>  
+    
+    
+    
+					
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Enquiries Notified to me:<%if(ts.getClasses_sent()!=null){%>(<%=ts.getClasses_sent().size()-1%>)<%} %></label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><% if(list!=null){%>
+    <% for(long l: ts.getClasses_sent()){
+                        	if(l!=1){
+                        		if(l>=2283){%>
+                        <a href="../enquirycontactdetails.jsp?id=<%=l%>"><%=l%></a>,
+                        <%}else{
+                        %>	
+                      <%=l%>,
+                       <% }
+                        	}}}%>
+    </div>
+						</div>
+					</li>
+					
+					<li id="row_f20" class="pf_row">
+						<div class="field">
+							<label class="badge">Enquiries Contact I viewed:<%if(ts.getContacts_viewed()!=null){%>(<%=ts.getContacts_viewed().size()-1%>)<%} %></label>
+						</div>
+						<div class="field_answer">
+							<div class="answer"><% if(ts.getContacts_viewed()!=null){%>
+    <% for(long l: ts.getContacts_viewed()){
+                        	if(l!=1){
+                        		if(l>=2283){%>
+                        <a href="../viewcontact.jsp?id=<%=l%>"><%=l%></a>,
+                        <%}else{
+                        %>	
+                      <%=l%>,
+                       <% }
+                        	}}}%></div>
+						</div>
+					</li>
+				
+			</ul>
+		</div>
+</div>
+
+
+
+</div>
+</div>
+
+<!-- Modal -->
+<div id="plans" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->	
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title text-center" style="color:#006e96"><img src="image/view.png" /></h3>
+      </div>
+      <div class="modal-body">
+      
+      <div class="col-md-4 no-break text-center" ><div class="glyphicon glyphicon-ok" ></div>Students Contact View</div>   
+      <div class="col-md-4 no-break text-center"><div class="glyphicon glyphicon-ok" ></div>No Commission</div>
+      <div class="col-md-4 no-break text-center"><div class="glyphicon glyphicon-ok" ></div>Email,SMS Alerts</div>
+      <br>
+ <br><!-- Plans -->
+    <section id="plans">
+        <div class="container">
+            <div class="row">
+
+<!-- 
+ 
+                <div class="col-md-3 text-center">
+                    <div class="panel panel-danger panel-pricing" style="border-color:#c2cace;">
+                        <div class="panel-heading" style="background-color:#eee;border-color:#c2cace;">
+                            <i class="fa fa-desktop"></i>
+                            <h3 style="color:black">Freemium</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p><strong style="color:black;font-size:32px;" class="no-break">  &#8377 0</strong></p>
+                        </div>
+                        <ul class="list-group text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i>1 Student View</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i>1 day trial</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><strong>Response:</strong> Very Low</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i>-</li>  
+                            <li class="list-group-item"><i class="fa fa-check"></i>-</li>  
+                        </ul>
+                        <div class="panel-footer">
+                            <a class="btn btn-lg btn-block" style="color:black;" href="freemium_msg.jsp">Start Free</a>
+                        </div>
+                    </div>
+                </div>
+ -->
+                <!-- item -->
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-danger panel-pricing" style="border-color:#b8d7ef;">
+                        <div class="panel-heading" style="color:#2d73a8;background:#d5e0e8;border-color:#b8d7ef;">
+                            <i class="fa fa-desktop"></i>
+                            <h3>Bronze Plan</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p><strong style="color:#337ab7;font-size:32px;" class="no-break">  &#8377 3000</strong></p>
+                        </div>
+                        <ul class="list-group text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i>20 Student Contact Views</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i> <strong>Validity:</strong> 180 days</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><strong>Response:</strong> Standard</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i>-</li>  
+                            <li class="list-group-item"><i class="fa fa-check"></i>-</li>  
+                      </ul>
+                        <div class="panel-footer">
+                            <a  class="btn btn-lg btn-block btn-primary" href="payment.jsp?amt=3000&tut_id=<%=tut.getTut_id()%>">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /item -->
+
+                <!-- item -->
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-warning panel-pricing">
+                        <div class="panel-heading">
+                            <i class="fa fa-desktop"></i>
+                            <h3>Gold Plan</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p><strong style="color:#f0ad4e;font-size:32px;" class="no-break">  &#8377 4000</strong></p>
+                        </div>
+                        <ul class="list-group text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i>30 Student Contact Views</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><strong>Validity:</strong> 180 days</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><strong>Response:</strong> X 3 times</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><div class="no-break"><div class="glyphicon glyphicon-ok" ></div>Suggested Tutor Tag</div></li>  
+                            <li class="list-group-item"><i class="fa fa-check"></i>-</li>  
+                        </ul>
+                        <div class="panel-footer">
+                            <a class="btn btn-lg btn-block btn-warning" href="payment.jsp?amt=4000&tut_id=<%=tut.getTut_id()%>">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /item -->
+
+                <!-- item -->
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-success panel-pricing">
+                        <div class="panel-heading">
+                            <i class="fa fa-desktop"></i>
+                            <h3>Platinum Plan</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p><strong style="color:#449d44;font-size:32px;" class="no-break">  &#8377 5000</strong></p>
+                        </div>
+                        <ul class="list-group text-center">
+                            <li class="list-group-item"><i class="fa fa-check"></i>40 Student Contact Views</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i> <strong>Validity:</strong> 180 days</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><strong>Response:</strong> X 7 times</li>
+                            <li class="list-group-item"><i class="fa fa-check"></i><div class="no-break"><div class="glyphicon glyphicon-ok" ></div>Suggested Tutor Tag</div></li>  
+                            <li class="list-group-item"><i class="fa fa-check"></i><div class="no-break"><div class="glyphicon glyphicon-ok" ></div>15 Minutes early notification</div></li>  
+             </ul>
+                        <div class="panel-footer">
+                            <a class="btn btn-lg btn-block btn-success" href="payment.jsp?amt=5000&tut_id=<%=tut.getTut_id()%>">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /item -->
+
+            </div>
+        </div>
+        
+
+    </section>
+    <!-- /Plans -->
+   
+              </div>
+      <div class="modal-footer" style="text-align:center;background:#eee;">
+        Need Help? Call <strong style="color:#008bcf">7065-8065-65</strong> Mon to Sat, 10am to 7pm or Mail us <strong style="color:#008bcf">info@gharpeshiksha.com</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+										$(document).ready(function() {
+											
+											$().UItoTop({ easingType: 'easeOutQuart' });
+											
+										});
+									</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+</body>
+</html>
+
+<%} %>

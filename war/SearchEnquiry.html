@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<meta charset="ISO-8859-1">
+<title>Search Your Enquiry Here</title>
+</head>
+<body>
+<h1>Search Your Enquiry</h1>
+<form  action="/enquiry"  id="enquiry" name="enquiry" method="Post">
+Input:<input type="text" name="Input"><br><br>
+Search By:<select name="SearchBy">
+<option value="Contact Number">Contact Number</option>
+<option value="EnquiryID">Enquiry ID</option>
+</select><br><br>
+<input type="submit" value="Submit"> 
+
+</form>
+<div id="searchresults"> </div>
+<script>
+$(document).ready(function(){
+
+	$('#enquiry').on('submit',function(e){
+		e.preventDefault();
+		$.ajax({
+		type:"POST",
+		url:"/enquiry",
+		data:$("#enquiry").serialize(),
+		success:
+			function(data){ 
+			var text=JSON.stringify(data);
+			var obj = JSON.parse(text);
+		
+			var text1=JSON.stringify(obj.enquiry);
+			var arr =JSON.parse(text1);
+			
+          var code="<table><thead><th>Enquiry Id</th><th>Date</th><th>Name</th><th>Class</th><th>Subject</th><th>Address</th><th>Phone Number</th></thead><tbody>";
+         for(var i=0;i<arr.length;i++)
+         {
+        	 code+="<tr><td>"+arr[i].id+"</td><td>"+arr[i].date+"</td><td>"+arr[i].name+"</td><td>"+arr[i].cls+"</td><td>"+arr[i].subject+"</td><td>"+arr[i].address+"</td><td>"+arr[i].phone+"</td></tr>";
+        	// alert(arr[0].name+"\n"+arr[0].date+" "+arr[0].cls+" "+arr[0].subject); 
+         
+         }
+         code+="</tbody></table>";
+         document.getElementById("searchresults").innerHTML=code;
+      
+	}
+
+});	
+});
+});
+		
+</script>
+</body>
+
+</html>

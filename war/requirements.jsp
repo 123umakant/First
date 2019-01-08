@@ -547,13 +547,13 @@ vertical-align:super;
         <div class="form-group">
              <label for="last">Where you want to learn?</label>
            <div class="checkbox">
-      <label><input type="checkbox" value="" id="myCheck" >Home Tuition at My Home</label>
+      <label><input type="checkbox" value="" id="myCheck1" >Home Tuition at My Home</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Willing to travel to Teacher's Home</label>
+      <label><input type="checkbox" value="myCheck2">Willing to travel to Teacher's Home</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="">Online Class (via Skype, Hangout etc)</label>
+      <label><input type="checkbox" value="myCheck3">Online Class (via Skype, Hangout etc)</label>
     </div>
         </div>
       </div>
@@ -584,31 +584,15 @@ Teacher's experience 5+ yrs</label>
       <div class="col-md-6"><br>
         <div class="form-group">
           <label for="phone">Alternate Contact</label>
-          <input type="tel" class="form-control" placeholder="Optional" id="alt-contact">
+          <input type="tel" class="form-control" placeholder="Optional" id="alt-contact" value="alt_contact">
         </div>
 
 
       </div>
       <!--  col-md-6   -->
-
-      <div class="col-md-6">
-
-        <div class="form-group">
-          <label for="phone">Number of Sessions needed in a week</label>
-          <select class="form-control" id="sel1">
-        <option>Two Classes a Week</option>
-        <option>Three Classes a Week</option>
-        <option>Four Classes a Week</option>
-        <option>Five Classes a Week</option>
-        <option>Six Classes a Week</option>
-      </select>
-        </div>
       </div>
-      <!--  col-md-6   -->
-    </div>
     <!--  row   -->
-
-
+    
     <div class="row">
       <div class="col-md-6">
 
@@ -627,7 +611,7 @@ Teacher's experience 5+ yrs</label>
       <div class="col-md-6">
         <div class="form-group">
           <label for="comment">Message</label>
-      <textarea class="form-control" rows="5" id="comment" placeholder="Any special requirement? (optional)"></textarea>
+      <textarea class="form-control" rows="5" id="comment" value="Any special requirement? (optional)"></textarea>
         </div>
 
       </div>
@@ -860,20 +844,40 @@ alert(editId);
 		url:"/studentenquirytwo",
 		data:{"id":editId,'action':"editPost"},
 	    success:function(data){
-
 	    	
-	    	$(".selected-repost-btn"+currentId).show();
-	    	$('#smallModal').modal('toggle');
-
-	    	$(".selected-row"+currentId).addClass("close-btn");
-
-	    	$(".selected-repost-btn"+currentId).addClass("repost-btn");
-	    	$(".selected-brd-box"+currentId).addClass("blur-div");
-	    	
-	    }		
-		});	
+	    var obj= JSON.parse(data);
+	    var monthly_budget=obj.fees;
+	    var teaching_mode=obj.teaching_mode;
+	    var start_time=obj.start_time;
+	    var message=obj.message;
+	    var alt_contact=obj.alt_contact;
+	    alert(alt_contact);
+	    ($('#alt-contact').val(alt_contact));
+	    ($('#comment').val(message));
+	  //   ($('#myCheck').val(teaching_mode));
+//	    alert(name);
+	 //   document.getElementById("alt-contact").innerHTML=alt_contact;
+     //   alert(profilename);
+	 /*   if (teaching_mode).equals("Home Tuition at My Home")
+	    {
+	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
+	    $("#mycheck1").val("Home Tuition at My Home");
+	    }
+	    else if (teaching_mode).equals("Willing to travel to Teacher's Home")
+	    {
+	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
+	    $("#mycheck2").val("Home Tuition at My Home");	
+	    }
+	    else if (teaching_mode).equals("Online Class (via Skype, Hangout etc)")
+	    {
+	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
+	 	$("#mycheck3").val("Home Tuition at My Home");		
+	    }
+	   	
+		}	*/
 	}
-
+	});
+}
 
 
 

@@ -86,9 +86,14 @@ else if(action.equals("editPost"))
 {
 String i=req.getParameter("id");
 long id=Long.parseLong(i);
-
+System.out.println(id);
 Lead lead=ofy().load().type(Lead.class).id(id).now();
 
+System.out.println(lead.getStart_time());
+System.out.println(lead.getTeaching_mode());
+System.out.println(lead.getFees());
+System.out.println(lead.getAlt_contact());
+System.out.println(lead.getMessage());
 JSONObject js = new JSONObject();	
 js.put("start_time",lead.getStart_time());
 js.put("teaching_mode",lead.getTeaching_mode());

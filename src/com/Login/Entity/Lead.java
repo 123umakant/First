@@ -315,9 +315,10 @@ public class Lead {
 	}
 
 
-
 	public Lead(long enq_id, String name, String date, String email,
-			String cls, String subject, String address, String contact) {
+			String cls, String subject, String address, String contact,
+			String alt_contact, String fees, String[] mode, String start_time,
+			String message) {
 		super();
 		this.enq_id = enq_id;
 		this.name = name;
@@ -327,6 +328,11 @@ public class Lead {
 		this.subject = subject;
 		this.address = address;
 		this.contact = contact;
+		this.alt_contact = alt_contact;
+		this.fees = fees;
+		this.mode = mode;
+		this.start_time = start_time;
+		this.message = message;
 	}
 
 	public Lead(String zone,long enq_id, String name, String date, String pincode,

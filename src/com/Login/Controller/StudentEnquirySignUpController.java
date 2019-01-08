@@ -2,6 +2,7 @@ package com.Login.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -32,9 +33,28 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	String email=req.getParameter("email");
 	String date=req.getParameter("date");
 	long enq_id=Long.parseLong(enq_i);
-	String    
-	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, contact);
+	String alt_contact=req.getParameter("alt_contact");
+	String fees=req.getParameter("MonthlyBudget");
+	String start_time=req.getParameter("start_time");
+	String message= req.getParameter("message");
+	String[] teaching_mode=req.getParameterValues("LearningType");
+	//String teaching_mode=(Arrays.toString(teaching_mode));
+	//System.out.println(Arrays.toString(teaching_mode));
+	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, contact, alt_contact, fees, teaching_mode, start_time, message);
 	ofy().save().entity(ld).now();	
+//	Lead lead=ofy().load().type(Lead.class).
+//	for(int i=0;i<teaching_mode.length;i++)
+//	{
+		
+//		System.out.println(teaching_mode[i]);
+//	}
+	//String[] parts = teaching_mode.
+	//System.out.println(teaching_mode);
+//	  for(String value :teaching_mode)
+//	     {
+//    System.out.println(value);
+//	     } 
+	//
 	
 	StudentLoginDetails login=ofy().load().type(StudentLoginDetails.class).id(contact).now();
 	if(login==null)

@@ -145,7 +145,6 @@ border-bottom: 2px solid darkgray;
 margin-top:40px;
 }
 }
-
 @media screen and (max-width:1200px)	{
 .mobileview{border-bottom:2px solid darkgrey;}
 .posted{margin-top:40px;}
@@ -349,7 +348,6 @@ vertical-align:super;
 #scrollable-div::-webkit-scrollbar {
   width: 20px;
 }
-
 /* Track */
 #scrollable-div::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
@@ -361,7 +359,6 @@ vertical-align:super;
   background: darkgray; 
   border-radius: 10px;
 }
-
 /* Handle on hover */
 #scrollable-div::-webkit-scrollbar-thumb:hover {
   background: gray; 
@@ -540,20 +537,20 @@ vertical-align:super;
             
             
           <div class="container">
-  <form action="">
+  <form action=" ">
     <br>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
              <label for="last">Where you want to learn?</label>
            <div class="checkbox">
-      <label><input type="checkbox" value="" id="myCheck1" >Home Tuition at My Home</label>
+      <label><input type="checkbox" class="learn" value="Home Tuition at My Home" id="myCheck1" >Home Tuition at My Home</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="myCheck2">Willing to travel to Teacher's Home</label>
+      <label><input type="checkbox" class="learn" value="Willing to travel to Teacher's Home" >Willing to travel to Teacher's Home</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="myCheck3">Online Class (via Skype, Hangout etc)</label>
+      <label><input type="checkbox" class="learn" value="Online Class" >Online Class (via Skype, Hangout etc)</label>
     </div>
         </div>
       </div>
@@ -563,15 +560,15 @@ vertical-align:super;
         <div class="form-group">
           <label for="last">Your approximate Monthly Budget</label>
           <div class="radio">
-      <label><input type="radio" name="optradio" checked>Basic Rs.5400 - 6000 (20 Sessions in month)
+      <label><input type="radio" name="optradio" id="a" value="Rs.5400 - 6000 (20 Sessions in month)">Basic Rs.5400 - 6000 (20 Sessions in month)
 Teacher's experience upto 2 yrs</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">Standard Rs.6000 - 6600 (20 Sessions in month)
+      <label><input type="radio" name="optradio"  id="b" value="Rs.6000 - 6600 (20 Sessions in month)">Standard Rs.6000 - 6600 (20 Sessions in month)
 Teacher's experience 2-5 yrs</label>
     </div>
     <div class="radio">
-      <label><input type="radio" name="optradio">Expertise Rs.6600 - 8000 (20 Sessions in month)
+      <label><input type="radio" name="optradio"  id="c" value="Rs.6600-8000 (20 Sessions in month)">Expertise Rs.6600 - 8000 (20 Sessions in month)
 Teacher's experience 5+ yrs</label>
     </div>
         </div>
@@ -598,10 +595,10 @@ Teacher's experience 5+ yrs</label>
 
         <div class="form-group">
           <label for="phone">When you would like to start ?</label>
-          <select class="form-control" id="sel1">
-        <option>Immediately</option>
-        <option>Within next 2 weeks</option>
-        <option>Not sure, right now just checking prices</option>
+          <select class="form-control" id="start_time">
+        <option value="Immediately">Immediately</option>
+        <option value="Within next 2 weeks">Within next 2 weeks</option>
+        <option value="Not sure, right now just checking prices">Not sure, right now just checking prices</option>
         
       </select>
         </div>
@@ -619,7 +616,7 @@ Teacher's experience 5+ yrs</label>
     </div>
     <!--  row   -->
 
-      <center><button type="submit" class="btn btn-primary">Update</button></center>
+      <center><button type="submit" class="btn btn-primary" onclick="updateEnquiry()">Update</button></center>
   </form>
 </div>   
         </div>
@@ -715,7 +712,6 @@ ajaxcall(page_num);
 }
 })
 });
-
 function ajaxcall(data)
 {  // alert("calling ajax");
 	$.ajax({
@@ -759,13 +755,10 @@ function ajaxcall(data)
     				  $('#scrollable-div').append(code);
         	          
     	           }
-
     }		
 	});
 	
 }//end of function ajaxcall
-
-
 </script>
  <script>
 $(document).ready(function(){
@@ -783,7 +776,6 @@ $(document).on('click','.newid',function(){
 var currentId = $(this).attr('id');
 $("#start-closing").val(currentId);
 });
-
  
 $(document).on('click','.repost-btn',function(){
 var currentId = $(this).attr('id');
@@ -813,24 +805,52 @@ function sendStatus()
 {
 var status="cancelled";
 var currentId = $("#start-closing").attr('value');
-
 $.ajax({
 	type:"POST",
 	url:"/studentenquirytwo",
 	data:{"id":currentId,"status":status,'action':"cancelled"},
     success:function(data){
-
     	
     	$(".selected-repost-btn"+currentId).show();
     	$('#smallModal').modal('toggle');
-
     	$(".selected-row"+currentId).addClass("close-btn");
-
     	$(".selected-repost-btn"+currentId).addClass("repost-btn");
     	$(".selected-brd-box"+currentId).addClass("blur-div");
     	
     }		
 	});
+}
+</script>
+<script>
+function updateEnquiry()
+{
+alert("hello");
+//var mode = $('.learn:checked').val();
+//var mode = ($('#myCheck1').val());
+var currentId = $("#start-closing").attr('value');
+var alt_contact =($('#alt-contact').val());
+var start_time =($('#start_time').val());
+var message = ($('#comment').val());
+
+var checkedValue =""; 
+var inputElements = document.getElementsByClassName('learn');
+for(var i=0; i<inputElements.length;i++)
+{
+      if(inputElements[i].checked){
+           checkedValue+=inputElements[i].value+",";
+      }
+}
+alert(checkedValue);
+$.ajax({
+	type:"POST",
+	url:"/studentenquirytwo",
+	data:{"id":currentId,"action":"updatePost","alt_contact":alt_contact,"start_time":start_time,"message":message,"mode":checkedValue},
+    success:function(data){
+    
+    }		
+	});
+
+
 }
 
 </script>
@@ -844,47 +864,53 @@ alert(editId);
 		url:"/studentenquirytwo",
 		data:{"id":editId,'action':"editPost"},
 	    success:function(data){
-	    	
+	    	alert(data);	
 	    var obj= JSON.parse(data);
+	  //  alert(obj);
 	    var monthly_budget=obj.fees;
-	    var teaching_mode=obj.teaching_mode;
+	    alert(monthly_budget);
+	    var teaching_mode=obj.mode;
+	    alert(teaching_mode);
+	    var mode=String(teaching_mode).split(',');
 	    var start_time=obj.start_time;
+	    alert(start_time);
 	    var message=obj.message;
 	    var alt_contact=obj.alt_contact;
 	    alert(alt_contact);
 	    ($('#alt-contact').val(alt_contact));
 	    ($('#comment').val(message));
-	  //   ($('#myCheck').val(teaching_mode));
-//	    alert(name);
-	 //   document.getElementById("alt-contact").innerHTML=alt_contact;
-     //   alert(profilename);
-	 /*   if (teaching_mode).equals("Home Tuition at My Home")
+	 
+	    var check1;
+	    for(var i=0;i<mode.length;i++)
 	    {
-	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
-	    $("#mycheck1").val("Home Tuition at My Home");
+	    check1=mode[i];
+	    $(":checkbox[value='"+check1+"']").prop("checked","true");	
+	  	$("#mycheck1").val("Home Tuition at My Home");
 	    }
-	    else if (teaching_mode).equals("Willing to travel to Teacher's Home")
+   
+	    if (start_time=="Immediately"||start_time=="Within next 2 weeks"||start_time=="Not sure, right now just checking prices")
+		{
+		$("#start_time").val(start_time);
+		}
+/*
+	    if (monthly_budget=="Rs.5400 - 6000 (20 Sessions in month)")
 	    {
-	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
-	    $("#mycheck2").val("Home Tuition at My Home");	
-	    }
-	    else if (teaching_mode).equals("Online Class (via Skype, Hangout etc)")
+		$("#a").prop("checked",true);
+	     }
+	    else if (monthly_budget=="Rs.6000 - 6600 (20 Sessions in month)")
 	    {
-	    $(":checkbox[value='Home Tuition at My Home']").prop("checked","true");	
-	 	$("#mycheck3").val("Home Tuition at My Home");		
+	    $("#b").prop("checked",true);
 	    }
-	   	
-		}	*/
-	}
+	    else if (monthly_budget=="Rs.6600-8000 (20 Sessions in month)")
+	    {
+	    $("#c").prop("checked",true);
+	    }
+*/
+		}	
 	});
 }
-
-
-
 </script>
 </body>
 </html>
 	
 <%}%>
-	
-	

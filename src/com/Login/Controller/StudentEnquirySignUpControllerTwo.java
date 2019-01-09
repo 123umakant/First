@@ -90,13 +90,13 @@ System.out.println(id);
 Lead lead=ofy().load().type(Lead.class).id(id).now();
 
 System.out.println(lead.getStart_time());
-System.out.println(lead.getTeaching_mode());
+System.out.println(lead.getMode());
 System.out.println(lead.getFees());
 System.out.println(lead.getAlt_contact());
 System.out.println(lead.getMessage());
 JSONObject js = new JSONObject();	
 js.put("start_time",lead.getStart_time());
-js.put("teaching_mode",lead.getTeaching_mode());
+js.put("mode",lead.getMode());
 js.put("fees",lead.getFees());
 js.put("alt_contact",lead.getAlt_contact());
 js.put("message",lead.getMessage());
@@ -105,6 +105,32 @@ out.print(js.toString());
 
 }
 	
+else if(action.equals("updatePost"))
+{
+String i=req.getParameter("id");
+long id=Long.parseLong(i);
+String alt_contact=req.getParameter("alt_contact");
+String start_time=req.getParameter("start_time");
+String message=req.getParameter("message");
+String mode=req.getParameter("mode");
+System.out.println(id);
+Lead lead=ofy().load().type(Lead.class).id(id).now();
+
+System.out.println(lead.getStart_time());
+System.out.println(lead.getMode());
+System.out.println(lead.getFees());
+System.out.println(lead.getAlt_contact());
+System.out.println(lead.getMessage());
+JSONObject js = new JSONObject();	
+js.put("start_time",lead.getStart_time());
+js.put("mode",lead.getMode());
+js.put("fees",lead.getFees());
+js.put("alt_contact",lead.getAlt_contact());
+js.put("message",lead.getMessage());
+
+out.print(js.toString());
+
+}
 }
 }
 

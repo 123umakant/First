@@ -3,6 +3,7 @@ package com.Login.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
@@ -86,14 +87,14 @@ else if(action.equals("editPost"))
 {
 String i=req.getParameter("id");
 long id=Long.parseLong(i);
-System.out.println(id);
+//System.out.println(id);
 Lead lead=ofy().load().type(Lead.class).id(id).now();
 
-System.out.println(lead.getStart_time());
-System.out.println(lead.getMode());
-System.out.println(lead.getFees());
-System.out.println(lead.getAlt_contact());
-System.out.println(lead.getMessage());
+//System.out.println(lead.getStart_time());
+//System.out.println(lead.getMode());
+//System.out.println(lead.getFees());
+//System.out.println(lead.getAlt_contact());
+//System.out.println(lead.getMessage());
 JSONObject js = new JSONObject();	
 js.put("start_time",lead.getStart_time());
 js.put("mode",lead.getMode());
@@ -109,26 +110,24 @@ else if(action.equals("updatePost"))
 {
 String i=req.getParameter("id");
 long id=Long.parseLong(i);
-String alt_contact=req.getParameter("alt_contact");
-String start_time=req.getParameter("start_time");
-String message=req.getParameter("message");
-String mode=req.getParameter("mode");
-System.out.println(id);
-Lead lead=ofy().load().type(Lead.class).id(id).now();
+String alt_contact2=req.getParameter("alt_contact1");
+String start_time2=req.getParameter("start_time1");
+String message2=req.getParameter("message1");
+String[] mode2=req.getParameterValues("mode1");
 
-System.out.println(lead.getStart_time());
-System.out.println(lead.getMode());
-System.out.println(lead.getFees());
-System.out.println(lead.getAlt_contact());
-System.out.println(lead.getMessage());
-JSONObject js = new JSONObject();	
-js.put("start_time",lead.getStart_time());
-js.put("mode",lead.getMode());
-js.put("fees",lead.getFees());
-js.put("alt_contact",lead.getAlt_contact());
-js.put("message",lead.getMessage());
+Lead ld=ofy().load().type(Lead.class).id(id).now();
 
-out.print(js.toString());
+//System.out.println(id);
+//System.out.println(alt_contact2);
+//System.out.println(start_time2);
+//System.out.println(message2);
+//System.out.println(Arrays.toString(mode2));
+ld.setAlt_contact(alt_contact2);
+ld.setStart_time(start_time2);
+ld.setMessage(message2);
+ld.setMode(mode2);
+
+ofy().save().entity(ld).now();
 
 }
 }

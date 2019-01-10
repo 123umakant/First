@@ -156,4 +156,12 @@
 	<servlet-name>StudentEnquiryLogoutController</servlet-name>
 	<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	<servlet-name>MatchingTutorController</servlet-name>
+	<servlet-class>com.Login.Controller.MatchingTutorController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>MatchingTutorController</servlet-name>
+	<url-pattern>/matchingtutor</url-pattern>
+	</servlet-mapping>
 </web-app>

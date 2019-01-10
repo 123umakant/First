@@ -534,11 +534,14 @@ vertical-align:super;
         <!-- Modal body -->
         <div class="modal-body" style="background-image: url(../image/courses_background.jpg);">
          
-            
+           
             
           <div class="container">
   <form action=" ">
     <br>
+    <div>
+      <input type="hidden"id="idd" value=" " name="hiddenid">
+      </div> 
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -827,10 +830,11 @@ function updateEnquiry()
 alert("hello");
 //var mode = $('.learn:checked').val();
 //var mode = ($('#myCheck1').val());
-var currentId = $("#start-closing").attr('value');
+//var currentId = $("#start-closing").attr('value');
 var alt_contact =($('#alt-contact').val());
 var start_time =($('#start_time').val());
 var message = ($('#comment').val());
+var hiddenid=($('#idd').val());
 
 var checkedValue =""; 
 var inputElements = document.getElementsByClassName('learn');
@@ -840,11 +844,16 @@ for(var i=0; i<inputElements.length;i++)
            checkedValue+=inputElements[i].value+",";
       }
 }
+alert(hiddenid);
 alert(checkedValue);
+alert(alt_contact);
+alert(start_time);
+alert(message); 
+
 $.ajax({
 	type:"POST",
 	url:"/studentenquirytwo",
-	data:{"id":currentId,"action":"updatePost","alt_contact":alt_contact,"start_time":start_time,"message":message,"mode":checkedValue},
+	data:{"id":hiddenid,'action':"updatePost","alt_contact1":alt_contact,"start_time1":start_time,"message1":message,"mode1":checkedValue},
     success:function(data){
     
     }		
@@ -879,7 +888,7 @@ alert(editId);
 	    alert(alt_contact);
 	    ($('#alt-contact').val(alt_contact));
 	    ($('#comment').val(message));
-	 
+	    ($('#idd').val(editId));
 	    var check1;
 	    for(var i=0;i<mode.length;i++)
 	    {

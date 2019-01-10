@@ -38,9 +38,15 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	String start_time=req.getParameter("start_time");
 	String message= req.getParameter("message");
 	String[] mode=req.getParameterValues("LearningType");
+	String latitud=req.getParameter("latitude");
+	String longitud=req.getParameter("longitude");
+	String area=req.getParameter("area");
+	String sex_prefe=req.getParameter("sex_pref");
+	double latitude=Double.parseDouble(latitud);
+	double longitude=Double.parseDouble(longitud);
 	//String teaching_mode=(Arrays.toString(teaching_mode));
-	System.out.println(Arrays.toString(mode));
-	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, contact, alt_contact, fees, mode, start_time, message);
+//	System.out.println(Arrays.toString(mode));
+	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, sex_prefe, contact, alt_contact, fees, mode, longitude, latitude, start_time, message, area);
 	ofy().save().entity(ld).now();	
 //	Lead lead=ofy().load().type(Lead.class).
 //	for(int i=0;i<teaching_mode.length;i++)

@@ -278,6 +278,24 @@ public class TutorDetail {
 		this.contact = contact;
 		this.name = name;
 	}
+	
+	
+	public TutorDetail(long tut_id, long contact, String name,
+			double longitude, double latitude, int radius, String area,
+			String activepaidmember, String gender, long lastactivetimestamp) {
+		super();
+		this.tut_id = tut_id;
+		this.contact = contact;
+		this.name = name;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.radius = radius;
+		this.area = area;
+		this.activepaidmember = activepaidmember;
+		this.gender = gender;
+		this.lastactivetimestamp = lastactivetimestamp;
+	}
+	
 	public TutorDetail(long tut_id, long contact, Ref<LoginTutor> tutor,
 			long timestamp, String name, String english_fluency,
 			double longitude, double latitude, int radius,
@@ -334,14 +352,5 @@ public class TutorDetail {
 	{
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

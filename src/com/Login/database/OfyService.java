@@ -3,6 +3,7 @@ package com.Login.database;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
+import com.Login.Entity.CRM_Panels;
 import com.Login.Entity.Feedbacktest;
 import com.Login.Entity.FormData;
 import com.Login.Entity.Lead;
@@ -38,7 +39,7 @@ public class OfyService {
 		factory().register(LoginTutor.class);
 		factory().register(ServiceData.class);
 		factory().register(TeacherFollowUp.class);
-	
+		factory().register(CRM_Panels.class);
 		
 	}
 	public static Objectify ofy()

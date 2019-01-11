@@ -164,4 +164,12 @@
 	<servlet-name>MatchingTutorController</servlet-name>
 	<url-pattern>/matchingtutor</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	<servlet-name>CrmDataController</servlet-name>
+	<servlet-class>com.Login.Controller.CrmDataController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>CrmDataController</servlet-name>
+	<url-pattern>/crm</url-pattern>
+	</servlet-mapping>
 </web-app>

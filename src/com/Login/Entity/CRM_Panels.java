@@ -39,15 +39,15 @@ public void setDepartment(String department) {
 
 
 
-public CRM_Panels(long id, long panel_id, String name, String department) {
+
+
+public CRM_Panels(long panel_id, String name, String department) {
 	super();
-	this.id = id;
+	this.id=System.currentTimeMillis();
 	this.panel_id = panel_id;
 	this.name = name;
 	this.department = department;
 }
-
-
 public CRM_Panels() {
 	
 	

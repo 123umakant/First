@@ -38,24 +38,28 @@
 <center><h1 >Displaying Panel Data</h1></center>
 
 
-<center><a href="#" onclick="deletePanel()" data-toggle="modal" data-target="#myModal3">Add Panel</a></center>
-  <!-- Modal1 -->
-  <div class="modal fade" id="myModal" role="dialog">
+<center><a href="#"  data-toggle="modal" data-target="#myModal1">Add Panel</a></center>
+
+
+<!-- Modal1 -->
+  <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit Panel</h4>
+          <h4 class="modal-title">Add Panel</h4>
         </div>
         <div class="modal-body">
+        <form role="form" id="addpanel" action="\crm" >
          Panel Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="panel_id"><br><br>
          Panel Name:<input type="text" name="panel_name"><br><br>
          Department:&nbsp;<input type="text" name="department"><br><br>
-         
+         <input type="hidden" name="action" value="AddPanel">
          
          <input type="submit"  value="Submit">
+         </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -64,9 +68,40 @@
       
     </div>
   </div>
-  
-   <!-- Modal2 -->
+  <!--End of Modal1 -->
+   
+  <!-- Modal2 -->
   <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Panel</h4>
+        </div>
+        <div class="modal-body1">
+          <form role="form" id="editpanel" action="/crm" >
+         Panel Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="panel_id" id="modal_panel_id"><br><br>
+         Panel Name:<input type="text" name="panel_name" id="modal_panel_name"><br><br>
+         Department:&nbsp;<input type="text" name="department" id="modal_department"><br><br>
+         
+         <input type="hidden" id="modal_hiddenid" name="id">
+         <input type="hidden" name="action" value="UpdateEditPanel">
+         <input type="submit"  value="Submit" >
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+   <!--End of Modal2  -->
+   
+   <!-- Modal3 -->
+  <div class="modal fade" id="myModal3" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -78,7 +113,7 @@
         <div class="modal-body">
   <center><p><b>Are you sure you want to delete this panel?</b></p></center><br><br>
         
-<center><button type="button" name="button1">Yes</button>&nbsp;&nbsp;
+<center><button type="button" name="button1" id="delete_confirmation" class="yes" data-toggle="modal">Yes</button>&nbsp;&nbsp;
      <button type="button" name="button2">No</button></center>
         
         </div>
@@ -89,35 +124,10 @@
       
     </div>
   </div>
-   <!--End of Modal2 -->
+   <!--End of Modal3 -->
 
 
- <!-- Modal3 -->
-  <div class="modal fade" id="myModal3" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Panel</h4>
-        </div>
-        <div class="modal-body">
-         Panel Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="panel_id"><br><br>
-         Panel Name:<input type="text" name="panel_name"><br><br>
-         Department:&nbsp;<input type="text" name="department"><br><br>
-         
-         
-         <input type="submit"  value="Submit">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <!--End of Modal3 --> 
+ 
   
 <table border="1px">
 <th>Panel_Id</th>
@@ -130,37 +140,87 @@ Iterator<CRM_Panels> itr=list.iterator();
 while(itr.hasNext())
 {
 CRM_Panels value=itr.next();
+long id=value.getId();
+//System.out.println(id);
 %>
-<tr>
+<tr id="row<%=value.getId()%>">
 <td><%=value.getPanel_id() %></td>
 <td><%=value.getName() %></td>
 <td><%=value.getDepartment() %></td>
-<td><a href="#" onclick="editPanel()" data-toggle="modal" data-target="#myModal">Edit</a></td>
-<td><a href="#" onclick="deletePanel()" data-toggle="modal" data-target="#myModal2">Delete</a></td>
+<td><a href="#" id="<%= value.getId()%>" onclick="editPanel(this.id)" data-toggle="modal" data-target="#myModal2">Edit</a></td>
+<td><a href="#" id="<%= value.getId()%>" onclick="deletePanel(this.id)" data-toggle="modal" data-target="#myModal3">Delete</a></td>
 
 <%}%>
 </tr>
 
-
-
 </table>
 
+
+
 <script>
-function editPanel()
+function editPanel(id)
 {
-	e.preventDefault();
-	$.ajax({
-	type:"POST",
-	url:"/enquiry",
-	data:$("#formdata").serialize(),
-	success:
-		{
-		
-		
-		},
-	});
+	var edit_id=id;
+	alert(edit_id);
+//	e.preventDefault();
+      $.ajax({
+      type:"GET",
+      url:"/crm",
+      data:{"id":edit_id,'action':"EditPanel"},
+      success:function(data)
+      {
+    	  alert(data);
+   //   var obj=data;
+      var obj= JSON.parse(data);
+      var panel_id=obj.panel_id;
+      var panel_name=obj.panel_name;
+      var department=obj.department;
+      var hiddenid=obj.id;
+    
+      alert(panel_id);
+      alert(panel_name);
+      alert(department);
+      alert(hiddenid);
+   //   $(".modal-body #panel_id").val(panel_id);
+      ($('#modal_panel_id').val(panel_id));
+	  ($('#modal_panel_name').val(panel_name));
+	  ($('#modal_department').val(department));
+	  ($('#modal_hiddenid').val(hiddenid));
+      }
+      });
 
 }
 </script>
+<script>
+function deletePanel(id)
+{
+var delete_id=id;
+($('delete_confirmation').val(delete_id));
+
+$(document).on('click','.yes',function(){
+$('#myModal3').modal('toggle');	
+//alert("hellonew");
+  $.ajax({
+  type:"GET",
+  url:"/crm",
+  data:{"id":delete_id,'action':"DeletePanel"},
+  success:function(){
+  $("#row"+id).css("display", "none");
+  }
+
+  });
+  });		 
+  }
+	 
+</script>
+	
+	
+	
+	
+	
+	
+}
+</script>
+
 </body>
 </html>

@@ -31,35 +31,54 @@ String password;
 @Index String department;
 
 
-public long getNewregisteredclients() {
-	return newregisteredclients;
+
+public long getPhone() {
+	return Phone;
 }
-public void setNewregisteredclients(long newregisteredclients) {
-	this.newregisteredclients = newregisteredclients;
+public void setPhone(long phone) {
+	Phone = phone;
 }
-public String getAccess_token() {
-	return access_token;
+public String getPassword() {
+	return password;
 }
-public void setAccess_token(String access_token) {
-	this.access_token = access_token;
+public void setPassword(String password) {
+	this.password = password;
 }
-public String getIp_address() {
-	return ip_address;
+public String getEmp_id() {
+	return emp_id;
 }
-public void setIp_address(String ip_address) {
-	this.ip_address = ip_address;
+public void setEmp_id(String emp_id) {
+	this.emp_id = emp_id;
 }
-public LinkedHashSet<String> getAbsent_days() {
-	return absent_days;
+public String getName() {
+	return name;
 }
-public void setAbsent_days(LinkedHashSet<String> absent_days) {
-	this.absent_days = absent_days;
+public void setName(String name) {
+	this.name = name;
+}
+public String getWorkemail() {
+	return workemail;
+}
+public void setWorkemail(String workemail) {
+	this.workemail = workemail;
+}
+public long getPending_callback() {
+	return pending_callback;
+}
+public void setPending_callback(long pending_callback) {
+	this.pending_callback = pending_callback;
 }
 public long getNot_touched_myclients() {
 	return not_touched_myclients;
 }
 public void setNot_touched_myclients(long not_touched_myclients) {
 	this.not_touched_myclients = not_touched_myclients;
+}
+public long getTotal_myclients() {
+	return total_myclients;
+}
+public void setTotal_myclients(long total_myclients) {
+	this.total_myclients = total_myclients;
 }
 public long getNot_interested_clients() {
 	return not_interested_clients;
@@ -91,50 +110,53 @@ public long getPayment_received_clients() {
 public void setPayment_received_clients(long payment_received_clients) {
 	this.payment_received_clients = payment_received_clients;
 }
-public long getTotal_myclients() {
-	return total_myclients;
+public long getNewregisteredclients() {
+	return newregisteredclients;
 }
-public void setTotal_myclients(long total_myclients) {
-	this.total_myclients = total_myclients;
+public void setNewregisteredclients(long newregisteredclients) {
+	this.newregisteredclients = newregisteredclients;
 }
-public String getWorkemail() {
-	return workemail;
+public LinkedHashSet<String> getAbsent_days() {
+	return absent_days;
 }
-public long getPending_callback() {
-	return pending_callback;
+public void setAbsent_days(LinkedHashSet<String> absent_days) {
+	this.absent_days = absent_days;
 }
-public void setPending_callback(long pending_callback) {
-	this.pending_callback = pending_callback;
+public String getAccess_token() {
+	return access_token;
 }
-public String getName() {
-	return name;
+public void setAccess_token(String access_token) {
+	this.access_token = access_token;
 }
-public void setName(String name) {
-	this.name = name;
+public String getIp_address() {
+	return ip_address;
 }
-public void setWorkemail(String workemail) {
-	this.workemail = workemail;
+public void setIp_address(String ip_address) {
+	this.ip_address = ip_address;
 }
-public long getPhone() {
-	return Phone;
+public LinkedHashSet<Long> getAccess_to_panels() {
+	return access_to_panels;
 }
-public void setPhone(long phone) {
+public void setAccess_to_panels(LinkedHashSet<Long> access_to_panels) {
+	this.access_to_panels = access_to_panels;
+}
+public String getDepartment() {
+	return department;
+}
+public void setDepartment(String department) {
+	this.department = department;
+}
+
+
+
+public EmployeeAccount(long phone, String name, String department) {
+	super();
 	Phone = phone;
+	this.name = name;
+	this.department = department;
+    this.access_to_panels = new LinkedHashSet<Long>();
+	this.access_to_panels.add(Long.valueOf("100"));
 }
-public String getEmp_id() {
-	return emp_id;
-}
-public void setEmp_id(String emp_id) {
-	this.emp_id = emp_id;
-}
-public String getPassword() {
-	return password;
-}
-public void setPassword(String password) {
-	this.password = password;
-}
-
-
 public EmployeeAccount(long phone, String password,String emp_id,String workemail,String name) {
 	super();
 	this.Phone = phone;

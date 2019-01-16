@@ -18,8 +18,8 @@ public class Data extends HttpServlet {
 	{
 		PrintWriter out = res.getWriter();
 		String[] arr={};
-        Lead ld = new Lead(2,"Pravin","01/01/2019","tripathi.neerav@gmail.com","X","Physics","Shadipur Delhi","7836870129");
-		ofy().save().entity(ld).now();
+     //   Lead ld = new Lead(2,"Pravin","01/01/2019","tripathi.neerav@gmail.com","X","Physics","Shadipur Delhi","7836870129");
+	//	ofy().save().entity(ld).now();
 	
 		
 

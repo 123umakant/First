@@ -95,13 +95,13 @@ ofy().delete().entity(crm).now();
 	{
 	String empname=req.getParameter("employeename");
 //	String contact= req.getParameter("contact");
-	String department=req.getParameter("department");
+	
 	
 	String[] panel_id=req.getParameterValues("panel_id");
 	EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).filter("name",empname).first().now();
 	//EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).id(phone).now();
 	long phone=employeedetail.getPhone();
-	employeedetail.setDepartment(department);
+	
 /*	if(employeedetail==null)
 	{
 	EmployeeAccount empacc=new EmployeeAccount(phone, empname, department);
@@ -130,7 +130,24 @@ ofy().delete().entity(crm).now();
 	
   
 	}
+	else if(action.equals("Department_Update"))
+	{
+		String empname=req.getParameter("employeename");
+		String department=req.getParameter("department");
+		EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).filter("name",empname).first().now();
+		employeedetail.setDepartment(department);
+		
+		ofy().save().entity(employeedetail).now();
+		String referer=req.getHeader("referer");
+		res.sendRedirect(referer);
+		
+		
+		
+		
 	}
+	
+	
+}
 }
 
 

@@ -157,10 +157,10 @@ public EmployeeAccount(long phone, String name, String department) {
     this.access_to_panels = new LinkedHashSet<Long>();
 	this.access_to_panels.add(Long.valueOf("100"));
 }
-public EmployeeAccount(long phone, String password,String emp_id,String workemail,String name) {
+public EmployeeAccount(long phone,String emp_id,String workemail,String name,String department) {
 	super();
 	this.Phone = phone;
-	this.password = password;
+	this.password ="abc";
 	this.emp_id=emp_id;
 	this.name=name;
 	this.workemail=workemail;
@@ -170,7 +170,7 @@ public EmployeeAccount(long phone, String password,String emp_id,String workemai
 	this.in_process_clients=0;
 	this.absent_days=new LinkedHashSet<String>();
 	this.absent_days.add("a");
-		
+	this.department=department;	
 }
 
 public EmployeeAccount(){

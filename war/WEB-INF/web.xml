@@ -172,4 +172,12 @@
 	<servlet-name>CrmDataController</servlet-name>
 	<url-pattern>/crm</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	<servlet-name>EmployeeDetailController</servlet-name>
+	<servlet-class>com.Login.Controller.EmployeeDetailController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>EmployeeDetailController</servlet-name>
+	<url-pattern>/emp</url-pattern>
+	</servlet-mapping>
 </web-app>

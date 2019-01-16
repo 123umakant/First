@@ -49,8 +49,19 @@ CRM_Panels value1=itr1.next();
 </form>
 <form action="\crm">
 <h1>Employee Department</h1>
-<input type="hidden" name="action" value="Panel_Entry">
-Employee Name:<input type="text" name="employee_name"><br><br>
+<input type="hidden" name="action" value="Department_Update">
+Employee Name:<select name="employeename">
+<% 
+List<EmployeeAccount> list2 = ofy().load().type(EmployeeAccount.class).list();
+Iterator<EmployeeAccount> itr2=list2.iterator();
+while(itr2.hasNext())
+{
+EmployeeAccount value=itr2.next();
+%>
+<option value="<%=value.getName() %>" ><%=value.getName() %></option>
+
+<%}%>
+</select><br><br>
 Department:<select name="department">
 <option value="Activation">Activation</option>
 <option value="Service">Service</option>

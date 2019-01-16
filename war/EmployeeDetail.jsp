@@ -1,45 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="static com.Login.database.OfyService.*"%>
-    <%@ page import="com.Login.Entity.CRM_Panels" %>
+    <%@ page import="com.Login.Entity.EmployeeAccount" %>
     <%@ page import="java.util.List"%>
     <%@ page import="java.util.Iterator"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Displaying Crm Data</title>
+<title>Displaying Employee Information</title>
 <style>
-  td,th{
-  padding:5px;
+ td,th{
+  padding:30px;
   }
-  a{
-      padding: 4px 15px 4px 21px;
-    text-decoration: none;
-    background: deepskyblue;
-    color: white;
-    font-size: 20px;
-    
-    border-radius: 10px;
-  }
-  table
+   table
   {
       margin: 100px auto;
   }
-  </style>
+  
+ </style>
+ 
 </head>
+
 <body>
-<center><h1 >Displaying Panel Data</h1></center>
-
-
-<center><a href="#"  data-toggle="modal" data-target="#myModal1">Add Panel</a></center>
-
+<center><h1>Displaying Employee Information</h1></center>
+<center><a href="#"  data-toggle="modal" data-target="#myModal1">Add Employee</a></center>
 
 <!-- Modal1 -->
   <div class="modal fade" id="myModal1" role="dialog">
@@ -49,16 +37,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Panel</h4>
+          <h4 class="modal-title">Add Employee</h4>
         </div>
         <div class="modal-body">
-        <form role="form" id="addpanel" action="\crm" >
-         Panel Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="panel_id"><br><br>
-         Panel Name:<input type="text" name="panel_name"><br><br>
-         Department:&nbsp;<input type="text" name="department"><br><br>
-         <input type="hidden" name="action" value="AddPanel">
+        <form role="form" id="addpanel" action="\emp" >
+         Employee ID:<input type="number" name="emp_id" min=0><br><br>
+         Employee Contact:<input type="text" name="emp_contact"><br><br>
+         Employee Name:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_name"><br><br>
+         Department:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="department"><br><br>
+         Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_email"><br><br>
+         <input type="hidden" name="action" value="AddEmployee">
          
-         <input type="submit"  value="Submit">
+         <input type="submit"  value="Save">
          </form>
         </div>
         <div class="modal-footer">
@@ -78,17 +68,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit Panel</h4>
+          <h4 class="modal-title">Edit Employee Record</h4>
         </div>
         <div class="modal-body1">
-          <form role="form" id="editpanel" action="/crm" >
-         Panel Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="panel_id" id="modal_panel_id"><br><br>
-         Panel Name:<input type="text" name="panel_name" id="modal_panel_name"><br><br>
-         Department:&nbsp;<input type="text" name="department" id="modal_department"><br><br>
-         
-         <input type="hidden" id="modal_hiddenid" name="id">
-         <input type="hidden" name="action" value="UpdateEditPanel">
-         <input type="submit"  value="Submit" >
+          <form role="form" id="panel" action="/crm" >
+       &nbsp;&nbsp;  Employee Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="employee_id" id="edit_employee_id"><br><br>
+      &nbsp;&nbsp;   Employee Name:<input type="text" name="employee_name" id="edit_employee_name"><br><br>
+      &nbsp;&nbsp;  Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
+      &nbsp;&nbsp;  Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
+         <input type="hidden" id="Edit_hiddenid" name="id">
+         <input type="hidden" name="action" value="UpdateEditEmployee">
+      &nbsp;&nbsp;   <input type="submit"  value="Submit" >
          </form>
         </div>
         <div class="modal-footer">
@@ -111,7 +101,7 @@
       
         </div>
         <div class="modal-body">
-  <center><p><b>Are you sure you want to delete this panel?</b></p></center><br><br>
+  <center><p><b>Are you sure you want to delete this Employee Record?</b></p></center><br><br>
         
 <center><button type="button" name="button1" id="delete_confirmation" class="yes" data-toggle="modal">Yes</button>&nbsp;&nbsp;
      <button type="button" name="button2">No</button></center>
@@ -126,66 +116,70 @@
   </div>
    <!--End of Modal3 -->
 
-
- 
-  
-<table border="1px">
-<th>Panel_Id</th>
-<th>Panel_Name</th>
+<table border="1">
+<th>Employee ID </th>
+<th>Employee Name</th>
 <th>Department</th>
-<%
-List<CRM_Panels> list = ofy().load().type(CRM_Panels.class).list();
+<th>Contact</th>
+<th>Password</th>
+<th>Employee Email</th>
 
-Iterator<CRM_Panels> itr=list.iterator();
+<% 
+List<EmployeeAccount> list = ofy().load().type(EmployeeAccount.class).list();
+Iterator<EmployeeAccount> itr=list.iterator();
 while(itr.hasNext())
 {
-CRM_Panels value=itr.next();
-long id=value.getId();
-//System.out.println(id);
+EmployeeAccount value=itr.next();
 %>
-<tr id="row<%=value.getId()%>">
-<td><%=value.getPanel_id() %></td>
+<tr>
+<td><%=value.getEmp_id()%></td>
 <td><%=value.getName() %></td>
 <td><%=value.getDepartment() %></td>
-<td><a href="#" id="<%= value.getId()%>" onclick="editPanel(this.id)" data-toggle="modal" data-target="#myModal2">Edit</a></td>
-<td><a href="#" id="<%= value.getId()%>" onclick="deletePanel(this.id)" data-toggle="modal" data-target="#myModal3">Delete</a></td>
-
+<td><%=value.getPhone()%></td>
+<td><%=value.getPassword() %></td>
+<td><%=value.getWorkemail() %></td>
+<td><a href="#" id="<%= value.getPhone()%>" onclick="editEmployee(this.id)" data-toggle="modal" data-target="#myModal2">Edit</a></td>
+<td><a href="#" id="<%= value.getPhone()%>" onclick="deletePanel(this.id)" data-toggle="modal" data-target="#myModal3">Delete</a></td>
 <%}%>
 </tr>
-
 </table>
 
 
 
 <script>
-function editPanel(id)
+function editEmployee(id)
 {
 	var edit_id=id;
 	alert(edit_id);
 //	e.preventDefault();
       $.ajax({
       type:"GET",
-      url:"/crm",
-      data:{"id":edit_id,'action':"EditPanel"},
+      url:"/emp",
+      data:{"id":edit_id,'action':"EditEmployee"},
       success:function(data)
       {
     	  alert(data);
    //   var obj=data;
       var obj= JSON.parse(data);
-      var panel_id=obj.panel_id;
-      var panel_name=obj.panel_name;
+      var emp_id=obj.id;
+      var emp_name=obj.emp_name;
       var department=obj.department;
-      var hiddenid=obj.id;
-    
-      alert(panel_id);
-      alert(panel_name);
-      alert(department);
-      alert(hiddenid);
-   //   $(".modal-body #panel_id").val(panel_id);
-      ($('#modal_panel_id').val(panel_id));
-	  ($('#modal_panel_name').val(panel_name));
-	  ($('#modal_department').val(department));
-	  ($('#modal_hiddenid').val(hiddenid));
+      var emp_email=obj.emp_email;
+      var hiddenid=obj.Phone;
+      
+       alert(hiddenid);
+       alert(emp_id);
+       alert(emp_name);
+       alert(department);
+       alert(emp_email);
+ 
+      ($('#edit_employee_id').val(emp_id));
+      ($('#edit_employee_name').val(emp_name));
+	  ($('#edit_employee_department').val(department));
+	  ($('#edit_employee_email').val(emp_email));
+      ($('#Edit_hiddenid').val(hiddenid));
+ 
+	
       }
       });
 
@@ -202,8 +196,8 @@ $('#myModal3').modal('toggle');
 //alert("hellonew");
   $.ajax({
   type:"GET",
-  url:"/crm",
-  data:{"id":delete_id,'action':"DeletePanel"},
+  url:"/emp",
+  data:{"id":delete_id,'action':"DeleteEmployee"},
   success:function(){
   $("#row"+id).css("display", "none");
   }

@@ -169,7 +169,7 @@ public EmployeeAccount(long phone,String emp_id,String workemail,String name,Str
 	this.not_interested_clients=0;
 	this.in_process_clients=0;
 	this.absent_days=new LinkedHashSet<String>();
-	this.absent_days.add("a");
+	this.absent_days.add("01/01/2019");
 	this.department=department;	
 }
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Absent Record</title>
+</head>
+<body>
+<h1>Employee Absent Form</h1>
+<form action="\emp">
+Employee Name:<input type="text" name="emp_name"><br><br>
+Absent Date:<input type="date" name="emp_absent_date" id="emp_absent_id"><br><br>
+Leave Type:<select name="leavetype">
+<option> </option>
+<option value="Casual Leave">Casual Leave</option>
+<option value="Sick Leave">Sick Leave</option>
+
+</select><br><br>
+<input type="submit" value="Submit">
+<input type="hidden" name="action" value="emp_absent">
+</form>
+</body>
+</html>

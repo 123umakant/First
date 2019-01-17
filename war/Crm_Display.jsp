@@ -17,7 +17,7 @@
 <title>Displaying Crm Data</title>
 <style>
   td,th{
-  padding:5px;
+  padding:30px;
   }
   a{
       padding: 4px 15px 4px 21px;

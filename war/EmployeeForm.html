@@ -5,15 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="\crm">
+<form action="\emp">
+<h1>Employee Form</h1>
 Employee Name:<input type="text" name="employee_name"><br><br>
-Department:<select name="department">
-<option value="Activation">Activation</option>
-<option value="Service">Service</option>
-<option value="admin">Admin</option>
-<option value="Enquiry">Enquiry</option>
-</select>
+Absent Days:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="absent_days"><br><br>
 
+Employee Contact:<input type="text" name="contact"><br><br>
+
+
+<input type="hidden" name="action" value="AddAbsent"><br><br> 
+<input type="submit" value="Submit">
 </form>
 
 </body>

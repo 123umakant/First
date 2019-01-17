@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Panel Access</title>
+
 </head>
 
 <body>
@@ -87,20 +88,6 @@ function StorePanelId()
 
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

@@ -140,10 +140,7 @@ ofy().delete().entity(crm).now();
 		ofy().save().entity(employeedetail).now();
 		String referer=req.getHeader("referer");
 		res.sendRedirect(referer);
-		
-		
-		
-		
+			
 	}
 	
 	

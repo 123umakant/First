@@ -16,7 +16,7 @@ String password;
 @Index String workemail;
 @Index long pending_callback;
 @Index long not_touched_myclients;
-@Index long total_myclients;
+@Index long casual_myclients;
 @Index long not_interested_clients;
 @Index long pending_clients;
 @Index long in_process_clients;
@@ -29,6 +29,7 @@ String password;
 @Index String ip_address;
 @Index LinkedHashSet<Long> access_to_panels;
 @Index String department;
+@Index int casual_leaves;
 
 
 
@@ -74,11 +75,11 @@ public long getNot_touched_myclients() {
 public void setNot_touched_myclients(long not_touched_myclients) {
 	this.not_touched_myclients = not_touched_myclients;
 }
-public long getTotal_myclients() {
-	return total_myclients;
+public long getcasual_myclients() {
+	return casual_myclients;
 }
-public void setTotal_myclients(long total_myclients) {
-	this.total_myclients = total_myclients;
+public void setcasual_myclients(long casual_myclients) {
+	this.casual_myclients = casual_myclients;
 }
 public long getNot_interested_clients() {
 	return not_interested_clients;
@@ -147,6 +148,12 @@ public void setDepartment(String department) {
 	this.department = department;
 }
 
+public int getcasual_leaves() {
+	return casual_leaves;
+}
+public void setcasual_leaves(int casual_leaves) {
+	this.casual_leaves = casual_leaves;
+}
 
 
 public EmployeeAccount(long phone, String name, String department) {
@@ -157,7 +164,7 @@ public EmployeeAccount(long phone, String name, String department) {
     this.access_to_panels = new LinkedHashSet<Long>();
 	this.access_to_panels.add(Long.valueOf("100"));
 }
-public EmployeeAccount(long phone,String emp_id,String workemail,String name,String department) {
+public EmployeeAccount(long phone,String emp_id,String workemail,String name,String department,int casual_leaves) {
 	super();
 	this.Phone = phone;
 	this.password ="abc";
@@ -171,6 +178,7 @@ public EmployeeAccount(long phone,String emp_id,String workemail,String name,Str
 	this.absent_days=new LinkedHashSet<String>();
 	this.absent_days.add("01/01/2019");
 	this.department=department;	
+	this.casual_leaves=casual_leaves;	
 }
 
 public EmployeeAccount(){

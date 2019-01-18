@@ -38,8 +38,9 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	String department=req.getParameter("department");
 	String emp_email=req.getParameter("emp_email");
 	long phone=Long.parseLong(contact);
-		
-    EmployeeAccount empacc=new EmployeeAccount(phone, emp_id, emp_email, emp_name,department);
+	String emp_leave=req.getParameter("emp_leave");	
+	int emp_total_leave=Integer.parseInt(emp_leave);
+    EmployeeAccount empacc=new EmployeeAccount(phone, emp_id, emp_email, emp_name,department,emp_total_leave);
     ofy().save().entity(empacc).now();
     String referer=req.getHeader("referer");
 	res.sendRedirect(referer);
@@ -59,6 +60,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 		js.put("emp_email",emp.getWorkemail());
 		js.put("Phone",emp.getPhone());
 		js.put("emp_absent_days",emp.getAbsent_days());
+		js.put("emp_leave",emp.getcasual_leaves());
 		out.print(js.toString());
 			
 	}
@@ -88,13 +90,15 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	String emp_name=req.getParameter("employee_name");
 	String department=req.getParameter("employee_department");
 	String emp_email=req.getParameter("employee_email");
-	
+	String emp_leave=req.getParameter("emp_leave");
+	int emp_total_leave=Integer.parseInt(emp_leave);
 	EmployeeAccount emp=ofy().load().type(EmployeeAccount.class).id(phone).now();
   
 	emp.setWorkemail(emp_email);
 	emp.setName(emp_name);
 	emp.setEmp_id(emp_id);
 	emp.setDepartment(department);
+	emp.setcasual_leaves(emp_total_leave);
 	ofy().save().entity(emp).now();
 	String referer=req.getHeader("referer");
 	res.sendRedirect(referer);	
@@ -124,10 +128,10 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	    
 	    
 	//    emp_absent.getemployee().get().
-	    
-	    
 	    }
-	catch (ParseException e) {
+	
+	catch (ParseException e)
+	   {
 		e.printStackTrace();
 	   }
      

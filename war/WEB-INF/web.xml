@@ -180,4 +180,12 @@
 	<servlet-name>EmployeeDetailController</servlet-name>
 	<url-pattern>/emp</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	<servlet-name>EmployeeAbsentController</servlet-name>
+	<servlet-class>com.Login.Controller.EmployeeAbsentController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>EmployeeAbsentController</servlet-name>
+	<url-pattern>/empabsent</url-pattern>
+	</servlet-mapping>
 </web-app>

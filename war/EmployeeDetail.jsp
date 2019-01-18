@@ -54,6 +54,7 @@
          Employee Name:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_name"><br><br>
          Department:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="department"><br><br>
          Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_email"><br><br>
+         Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave"><br><br>
          <input type="hidden" name="action" value="AddEmployee">
          
          <input type="submit"  value="Save">
@@ -85,6 +86,7 @@
       &nbsp;&nbsp;  Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
       &nbsp;&nbsp;  Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
        &nbsp;&nbsp; Employee Absent Days:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_absent_days"id="employee_absent_id" ><br><br>
+                    Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave" id="emp_leave_id"><br><br>
          <input type="hidden" id="Edit_hiddenid" name="id">
          <input type="hidden" name="action" value="UpdateEditEmployee">
       &nbsp;&nbsp;   <input type="submit"  value="Submit" >
@@ -132,7 +134,7 @@
 <th>Contact</th>
 <th>Password</th>
 <th>Employee Email</th>
-<th>Employee Absent Days</th>
+<th>Employee Leave Left</th>
 
 <% 
 List<EmployeeAccount> list = ofy().load().type(EmployeeAccount.class).list();
@@ -148,7 +150,7 @@ EmployeeAccount value=itr.next();
 <td><%=value.getPhone()%></td>
 <td><%=value.getPassword() %></td>
 <td><%=value.getWorkemail() %></td>
-<td><%=value.getAbsent_days()%></td>
+<td><%=value.getcasual_leaves()%></td>
 <td><a href="#" id="<%= value.getPhone()%>" onclick="editEmployee(this.id)" data-toggle="modal" data-target="#myModal2">Edit</a></td>
 <td><a href="#" id="<%= value.getPhone()%>" onclick="deletePanel(this.id)" data-toggle="modal" data-target="#myModal3">Delete</a></td>
 <%}%>
@@ -187,7 +189,8 @@ function editEmployee(id)
 	  ($('#edit_employee_email').val(emp_email));
       ($('#Edit_hiddenid').val(hiddenid));
       ($('#employee_absent_id').val(absent_days));
-	
+      ($('#emp_leave').val(emp_leave));
+      
       }
       });
 

@@ -3,10 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Employee Absent Record</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
 <h1>Employee Absent Form</h1>
-<form action="\emp">
+<form id="emp_absent_data">
 Employee Name:<input type="text" name="emp_name"><br><br>
 Absent Date:<input type="date" name="emp_absent_date" id="emp_absent_id"><br><br>
 Leave Type:<select name="leavetype">
@@ -15,8 +17,33 @@ Leave Type:<select name="leavetype">
 <option value="Sick Leave">Sick Leave</option>
 
 </select><br><br>
-<input type="submit" value="Submit">
-<input type="hidden" name="action" value="emp_absent">
+<input type="submit" value="Submit" onclick="employee_absent_check(event)" >
+<div id="override"></div>
 </form>
+
+<script>
+function employee_absent_check(event)
+{
+    $.ajax({
+    	
+    type:"POST",
+	url:"/empabsent",
+	data:$("#emp_absent_data").serialize(),
+	success: function(data){
+	alert("hello2");	
+	
+	var code = data;
+    alert(code);
+	document.getElementById("override").innerHTML = code;	  
+	
+	}	
+    error: function(data)
+    {
+    alert("error");
+    }
+	});
+}
+
+</script>
 </body>
 </html>

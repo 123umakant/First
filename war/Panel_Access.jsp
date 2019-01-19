@@ -9,13 +9,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Panel Access</title>
 
+
+<style ">
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+}
+</style>
 </head>
 
 <body>
 <h1>Panel Access</h1>
-<form action="\crm" id="Paneldata">
+<form id="Paneldata">
 
 Employee Name:<select name="employeename">
 <% 
@@ -45,8 +61,8 @@ CRM_Panels value1=itr1.next();
 <td><input type="checkbox" value="<%=value1.getPanel_id()%>" " name="panel_id" ><%=value1.getPanel_id()%></td><br>
 
 <%}%>
-</tr><br><br>
-<input type="submit" value="Save" onclick="StorePanelId()">
+</tr><br>
+<input type="submit" value="Save" onclick="StorePanelId()" class="button">
 </form>
 <form action="\crm">
 <h1>Employee Department</h1>
@@ -70,7 +86,7 @@ Department:<select name="department">
 <option value="Enquiry">Enquiry</option>
 
 </select><br><br>
-<input type="submit" value="Save">
+<input type="submit" value="Save" class="button">
 </form>
 
 <script >

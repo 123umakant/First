@@ -21,13 +21,15 @@
       margin: 100px auto;
   }
    a{
-      padding: 4px 15px 4px 21px;
-    text-decoration: none;
-    background: deepskyblue;
-    color: white;
-    font-size: 20px;
-    
-    border-radius: 10px;
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
   }
  </style>
  
@@ -81,12 +83,12 @@
         </div>
         <div class="modal-body1">
           <form role="form" id="panel" action="/emp" >
-       &nbsp;&nbsp;  Employee Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="employee_id" id="edit_employee_id"><br><br>
-      &nbsp;&nbsp;   Employee Name:<input type="text" name="employee_name" id="edit_employee_name"><br><br>
-      &nbsp;&nbsp;  Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
-      &nbsp;&nbsp;  Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
-       &nbsp;&nbsp; Employee Absent Days:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_absent_days"id="employee_absent_id" ><br><br>
-                    Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave" id="emp_leave_id"><br><br>
+       &nbsp;&nbsp; Employee Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="employee_id" id="edit_employee_id"><br><br>
+       &nbsp;&nbsp; Employee Name:<input type="text" name="employee_name" id="edit_employee_name"><br><br>
+       &nbsp;&nbsp; Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
+       &nbsp;&nbsp; Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
+       &nbsp;&nbsp; Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave" id="emp_leave_id"><br><br>
+       &nbsp;&nbsp; Employee Panel Access:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_panel_access" id="emp_panel_access_id"><br><br>
          <input type="hidden" id="Edit_hiddenid" name="id">
          <input type="hidden" name="action" value="UpdateEditEmployee">
       &nbsp;&nbsp;   <input type="submit"  value="Submit" >
@@ -134,6 +136,7 @@
 <th>Contact</th>
 <th>Password</th>
 <th>Employee Email</th>
+<th>Employee Panel Access</th>
 <th>Employee Leave Left</th>
 
 <% 
@@ -150,6 +153,7 @@ EmployeeAccount value=itr.next();
 <td><%=value.getPhone()%></td>
 <td><%=value.getPassword() %></td>
 <td><%=value.getWorkemail() %></td>
+<td><%=value.getAccess_to_panels() %></td>
 <td><%=value.getcasual_leaves()%></td>
 <td><a href="#" id="<%= value.getPhone()%>" onclick="editEmployee(this.id)" data-toggle="modal" data-target="#myModal2">Edit</a></td>
 <td><a href="#" id="<%= value.getPhone()%>" onclick="deletePanel(this.id)" data-toggle="modal" data-target="#myModal3">Delete</a></td>
@@ -179,18 +183,19 @@ function editEmployee(id)
       var department=obj.department;
       var emp_email=obj.emp_email;
       var hiddenid=obj.Phone;
-      var absent_days=obj.emp_absent_days;
-      
-      alert(absent_days);
+      var emp_leave=obj.emp_leave;
+      var panel_access=obj.access_to_panels;
+      alert(panel_access);
       
       ($('#edit_employee_id').val(emp_id));
       ($('#edit_employee_name').val(emp_name));
 	  ($('#edit_employee_department').val(department));
 	  ($('#edit_employee_email').val(emp_email));
+      ($('#emp_leave_id').val(emp_leave));
+      ($('#emp_panel_access_id').val(panel_access));
       ($('#Edit_hiddenid').val(hiddenid));
-      ($('#employee_absent_id').val(absent_days));
-      ($('#emp_leave').val(emp_leave));
       
+   
       }
       });
 

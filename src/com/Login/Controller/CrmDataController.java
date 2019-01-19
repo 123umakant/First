@@ -94,23 +94,12 @@ ofy().delete().entity(crm).now();
 	else if(action.equals("Panel_Entry"))
 	{
 	String empname=req.getParameter("employeename");
-//	String contact= req.getParameter("contact");
-	
-	
+
 	String[] panel_id=req.getParameterValues("panel_id");
 	EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).filter("name",empname).first().now();
-	//EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).id(phone).now();
+	
 	long phone=employeedetail.getPhone();
-	
-/*	if(employeedetail==null)
-	{
-	EmployeeAccount empacc=new EmployeeAccount(phone, empname, department);
-	ofy().save().entity(empacc).now();	
-	}
-	
-	else
-	{
-	*/
+
 	EmployeeAccount acc=ofy().load().type(EmployeeAccount.class).id(phone).now();
 	LinkedHashSet<Long> list=acc.getAccess_to_panels();
 
@@ -128,7 +117,17 @@ ofy().delete().entity(crm).now();
 	acc.setAccess_to_panels(list);
     ofy().save().entity(acc).now();
 	
-  
+//	String contact= req.getParameter("contact");
+	//EmployeeAccount employeedetail=ofy().load().type(EmployeeAccount.class).id(phone).now();
+/*	if(employeedetail==null)
+	{
+	EmployeeAccount empacc=new EmployeeAccount(phone, empname, department);
+	ofy().save().entity(empacc).now();	
+	}
+	
+	else
+	{
+	*/
 	}
 	else if(action.equals("Department_Update"))
 	{

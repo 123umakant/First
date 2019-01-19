@@ -25,7 +25,7 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 String emp_name=req.getParameter("emp_name");
 String date=req.getParameter("emp_absent_date");
 String leave_type=req.getParameter("leavetype");
-	
+String month_days;	
 
 PrintWriter out = res.getWriter();
 if(leave_type.equals("Casual Leave"))
@@ -37,10 +37,55 @@ if(leave_type.equals("Casual Leave"))
 	String month_start=date.substring(0,8);
 
 	String month_start_date=month_start+"01";
-	System.out.println(month_start_date);
+//	System.out.println(month_start_date);
 	
 	String current_date=date+" "+"00:00:00"; 
-			
+	
+    String month_end_date=date.substring(5,7);
+    System.out.println(month_end_date);
+//    int month_end=Integer.parseInt(month_end_date);
+    
+    switch (month_end_date)
+    {
+    
+    case "01":
+    month_days="31";
+    break;
+    case "02":
+    month_days="28";
+    break;
+    case "03":
+    month_days="31";
+    break;
+    case "04":
+    month_days="04";
+    break;
+    case "05":
+    month_days="05";
+    break;
+    case "06":
+    month_days="06";
+    break;
+    case "07":
+    month_days="07";
+    break;
+    case "08":
+    month_days="08";
+    break;
+    case "09":
+    month_days="09";
+    break;
+    case "10":
+    month_days="10";
+    break;
+    case "11":
+    month_days="11";
+    break;
+    case "12":
+    month_days="12";
+    break;
+    }
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
 	String s =month_start_date+" "+"00:00:00";
@@ -98,6 +143,6 @@ if(leave_type.equals("Casual Leave"))
 	
 
 	
-}	
+}//end of if 	
 }
 }

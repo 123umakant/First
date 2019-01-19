@@ -61,6 +61,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 		js.put("Phone",emp.getPhone());
 		js.put("emp_absent_days",emp.getAbsent_days());
 		js.put("emp_leave",emp.getcasual_leaves());
+		js.put("access_to_panels", emp.getAccess_to_panels());
 		out.print(js.toString());
 			
 	}

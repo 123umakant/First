@@ -179,6 +179,8 @@ public EmployeeAccount(long phone,String emp_id,String workemail,String name,Str
 	this.absent_days.add("01/01/2019");
 	this.department=department;	
 	this.casual_leaves=casual_leaves;	
+	this.access_to_panels = new LinkedHashSet<Long>();
+	this.access_to_panels.add(Long.valueOf("100"));
 }
 
 public EmployeeAccount(){

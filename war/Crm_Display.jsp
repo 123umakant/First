@@ -20,13 +20,15 @@
   padding:30px;
   }
   a{
-      padding: 4px 15px 4px 21px;
-    text-decoration: none;
-    background: deepskyblue;
-    color: white;
-    font-size: 20px;
-    
-    border-radius: 10px;
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
   }
   table
   {

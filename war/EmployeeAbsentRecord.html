@@ -3,46 +3,81 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Employee Absent Record</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+div {
+  color: red;
+}
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+
+
+</style>
 </head>
 <body>
 <h1>Employee Absent Form</h1>
 <form id="emp_absent_data">
 Employee Name:<input type="text" name="emp_name"><br><br>
-Absent Date:<input type="date" name="emp_absent_date" id="emp_absent_id"><br><br>
+Absent Date:<input type="date" name="emp_absent_date" id="emp_absent_id" min="2018/01/01 " max="2019/01/05" ><br><br>
 Leave Type:<select name="leavetype">
 <option> </option>
 <option value="Casual Leave">Casual Leave</option>
 <option value="Sick Leave">Sick Leave</option>
 
 </select><br><br>
-<input type="submit" value="Submit" onclick="employee_absent_check(event)" >
-<div id="override"></div>
+<input type="submit" value="Submit" onclick="employee_absent_check(event)" class="button"><br><br>
+<div id="override" text color="red"></div>
 </form>
 
 <script>
 function employee_absent_check(event)
 {
-    $.ajax({
-    	
+	
+	event.preventDefault();
+    $.ajax({ 	
     type:"POST",
 	url:"/empabsent",
 	data:$("#emp_absent_data").serialize(),
-	success: function(data){
-	alert("hello2");	
-	
+	success:function(data){
+//	alert("hello2");	
 	var code = data;
-    alert(code);
-	document.getElementById("override").innerHTML = code;	  
-	
-	}	
-    error: function(data)
-    {
-    alert("error");
-    }
+//    alert(code);
+    document.getElementById("override").innerHTML = code;	  
+
+	}
 	});
 }
+
+</script>
+
+<script>
+$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;    
+    $('#emp_absent_id').attr('max', maxDate);
+});
 
 </script>
 </body>

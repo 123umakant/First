@@ -50,8 +50,11 @@
           <h4 class="modal-title">Add Employee</h4>
         </div>
         <div class="modal-body">
+          <%
+          int count= ofy().load().type(EmployeeAccount.class).count();
+          %>
         <form role="form" id="addpanel" action="/emp" >
-         Employee ID:<input type="number" name="emp_id" min=0><br><br>
+         Employee ID:<input type="text" name="emp_id" id="emp_id_id" value="<%=count+1%>"><br><br>
          Employee Contact:<input type="text" name="emp_contact"><br><br>
          Employee Name:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_name"><br><br>
          Department:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="department"><br><br>
@@ -83,7 +86,8 @@
         </div>
         <div class="modal-body1">
           <form role="form" id="panel" action="/emp" >
-       &nbsp;&nbsp; Employee Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="employee_id" id="edit_employee_id"><br><br>
+        
+       &nbsp;&nbsp; Employee Id:&nbsp;&nbsp;<b><span name="employee_id" id="edit_employee_id"></span></b><br><br>
        &nbsp;&nbsp; Employee Name:<input type="text" name="employee_name" id="edit_employee_name"><br><br>
        &nbsp;&nbsp; Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
        &nbsp;&nbsp; Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
@@ -167,7 +171,7 @@ EmployeeAccount value=itr.next();
 function editEmployee(id)
 {
 	var edit_id=id;
-	alert(edit_id);
+//	alert(edit_id);
 //	e.preventDefault();
       $.ajax({
       type:"GET",
@@ -175,7 +179,7 @@ function editEmployee(id)
       data:{"id":edit_id,'action':"EditEmployee"},
       success:function(data)
       {
-    	  alert(data);
+    	 // alert(data);
  
       var obj= JSON.parse(data);
       var emp_id=obj.id;
@@ -185,9 +189,10 @@ function editEmployee(id)
       var hiddenid=obj.Phone;
       var emp_leave=obj.emp_leave;
       var panel_access=obj.access_to_panels;
-      alert(panel_access);
+//      alert(panel_access);
       
-      ($('#edit_employee_id').val(emp_id));
+      document.getElementById("edit_employee_id").innerHTML=emp_id;
+ //     ($('#edit_employee_id').val(emp_id));
       ($('#edit_employee_name').val(emp_name));
 	  ($('#edit_employee_department').val(department));
 	  ($('#edit_employee_email').val(emp_email));

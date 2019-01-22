@@ -188,4 +188,12 @@
 	<servlet-name>EmployeeAbsentController</servlet-name>
 	<url-pattern>/empabsent</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	<servlet-name>CallLogController</servlet-name>
+	<servlet-class>com.Login.Controller.CallLogController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>CallLogController</servlet-name>
+	<url-pattern>/calllog</url-pattern>
+	</servlet-mapping>
 </web-app>

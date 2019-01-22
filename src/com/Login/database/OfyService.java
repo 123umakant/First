@@ -4,6 +4,7 @@ import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.Login.Entity.CRM_Panels;
+import com.Login.Entity.CallLog;
 import com.Login.Entity.EmployeeAbsentRecord;
 import com.Login.Entity.EmployeeAccount;
 import com.Login.Entity.Feedbacktest;
@@ -44,6 +45,7 @@ public class OfyService {
 		factory().register(CRM_Panels.class);
 		factory().register(EmployeeAccount.class);
 		factory().register(EmployeeAbsentRecord.class);
+		factory().register(CallLog.class);
 	}
 	public static Objectify ofy()
 	{

@@ -39,8 +39,9 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	String emp_email=req.getParameter("emp_email");
 	long phone=Long.parseLong(contact);
 	String emp_leave=req.getParameter("emp_leave");	
+	String calling_extension=req.getParameter("employee_extension");
 	int emp_total_leave=Integer.parseInt(emp_leave);
-    EmployeeAccount empacc=new EmployeeAccount(phone, emp_id, emp_email, emp_name,department,emp_total_leave);
+    EmployeeAccount empacc=new EmployeeAccount(phone, emp_id, emp_email, emp_name,department,emp_total_leave,calling_extension);
     ofy().save().entity(empacc).now();
     String referer=req.getHeader("referer");
 	res.sendRedirect(referer);

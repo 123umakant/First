@@ -60,6 +60,7 @@
          Department:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="department"><br><br>
          Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_email"><br><br>
          Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave"><br><br>
+         Empployee Extension:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_extension"><br><br>
          <input type="hidden" name="action" value="AddEmployee">
          
          <input type="submit"  value="Save">

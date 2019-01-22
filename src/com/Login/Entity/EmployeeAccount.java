@@ -30,7 +30,7 @@ String password;
 @Index LinkedHashSet<Long> access_to_panels;
 @Index String department;
 @Index int casual_leaves;
-
+@Index String calling_extension;
 
 
 public long getPhone() {
@@ -155,7 +155,12 @@ public void setcasual_leaves(int casual_leaves) {
 	this.casual_leaves = casual_leaves;
 }
 
-
+public String getCalling_extension() {
+	return calling_extension;
+}
+public void setCalling_extension(String calling_extension) {
+	this.calling_extension = calling_extension;
+}
 public EmployeeAccount(long phone, String name, String department) {
 	super();
 	Phone = phone;
@@ -164,7 +169,7 @@ public EmployeeAccount(long phone, String name, String department) {
     this.access_to_panels = new LinkedHashSet<Long>();
 	this.access_to_panels.add(Long.valueOf("100"));
 }
-public EmployeeAccount(long phone,String emp_id,String workemail,String name,String department,int casual_leaves) {
+public EmployeeAccount(long phone,String emp_id,String workemail,String name,String department,int casual_leaves,String calling_extension) {
 	super();
 	this.Phone = phone;
 	this.password ="abc";
@@ -181,6 +186,7 @@ public EmployeeAccount(long phone,String emp_id,String workemail,String name,Str
 	this.casual_leaves=casual_leaves;	
 	this.access_to_panels = new LinkedHashSet<Long>();
 	this.access_to_panels.add(Long.valueOf("100"));
+	this.calling_extension=calling_extension;
 }
 
 public EmployeeAccount(){

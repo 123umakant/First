@@ -1,12 +1,4 @@
-<!-- Indices written at Mon, 21 Jan 2019 16:39:55 IST -->
+<!-- Indices written at Tue, 22 Jan 2019 18:04:23 IST -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 1 time in query history -->
-    <datastore-index kind="EmployeeAbsentRecord" ancestor="false" source="auto">
-        <property name="employee" direction="asc"/>
-        <property name="leavetype" direction="asc"/>
-        <property name="datetimestamp" direction="asc"/>
-    </datastore-index>
-
-</datastore-indexes>

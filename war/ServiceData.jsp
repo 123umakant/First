@@ -34,8 +34,9 @@ Filter: <select name="filter">
    <th>Status2</th>
 <%
 String filtertype=request.getParameter("filter");
-
+System.out.println(filtertype);
 List <ServiceData> list=null;
+
 if(filtertype !=null)
 {
 list=ofy().load().type(ServiceData.class).filter("status",filtertype).list();	

@@ -26,67 +26,99 @@ public class CallLogController extends HttpServlet {
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {
 
-   String from_date=req.getParameter("from_date");
-   String to_date=req.getParameter("to_date");
-   
-   
-   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-   sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-   
-   try {
-	java.util.Date From_date;
-	 From_date=sdf.parse(from_date);
-	 long from_date_timestamp=From_date.getTime();
-	 java.util.Date To_date;
-	 To_date=sdf.parse(to_date);
-	 long to_date_timestamp=To_date.getTime();
-	
-	 EmployeeAccount emp = ofy().load().type(EmployeeAccount.class).id().filter("id>=",from_date_timestamp).filter("id<",to_date_timestamp).first().now();
-	 
-	 
-	 
-	 
-	 
-   } 
-   catch (ParseException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-   
-	
-   String emp_ext=req.getParameter("emp_ext");
-   String calldate=req.getParameter("calldate");
+ String emp_ext=req.getParameter("emp_ext");
+   String call_date=req.getParameter("calldate");
    String src=req.getParameter("src");
    String dst=req.getParameter("destination");
    String durati=req.getParameter("duration");
    String disposition=req.getParameter("disposition");
 	
+   System.out.println(call_date);
+   
+   String call_date_time=call_date;
+   call_date_time= call_date_time+" "+"00:00:00"; 
+   java.util.Date call_date_1;
+   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+   sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+   try 
+   {
+   call_date_1=sdf.parse(call_date_time);
+   long call_date_timestamp = call_date_1.getTime();
    float duration = Float.parseFloat(durati);
-   EmployeeAccount emp = ofy().load().type(EmployeeAccount.class).filter("calling_extension", emp_ext).first().now();
-   CallLog cl = new CallLog(calldate, src, dst, duration, disposition,Ref.create(emp));
-	
+//   EmployeeAccount emp = ofy().load().type(EmployeeAccount.class).filter("calling_extension", emp_ext).first().now();
+   CallLog cl = new CallLog(call_date_timestamp,call_date, src, dst, duration, disposition);
+		
    ofy().save().entity(cl).now();
 	
-   if(disposition.equals("Answered"))
+    } 
+   catch (ParseException e) 
    {
-   if(src.equals(emp_ext))
-   {
-	JSONObject js = new JSONObject();   
-	js.put("duration",cl.getDuration());
-	
+	// TODO Auto-generated catch block
+	e.printStackTrace();
    }
+//	 long to_date_timestamp=To_date.getTime();
    
-   if(dst.equals(emp_ext))
-   {
-	   
-	   
-	   
-	   
-	   
-   }
-	   
-	   
-   }
+//
+// 
+//   String from_date=req.getParameter("from_date");
+//   String to_date=req.getParameter("to_date");
+//   String emp_ext=req.getParameter("emp_ext");
+//   
+//   from_date= from_date+" "+"00:00:00"; 
+//   to_date= to_date+" "+"00:00:00"; 
+//   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//   sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+//   
+//   EmployeeAccount emp=ofy().load().type(EmployeeAccount.class).filter("calling_extension",emp_ext).first().now();
+//   
+//   try {
+//	 java.util.Date From_date;
+//	 From_date=sdf.parse(from_date);
+//	 long from_date_timestamp=From_date.getTime();
+//	 System.out.println(from_date_timestamp);
+//	 java.util.Date To_date;
+//	 To_date=sdf.parse(to_date);
+//	 long to_date_timestamp=To_date.getTime();
+//	 System.out.println(to_date_timestamp);
+//	 CallLog cl = ofy().load().type(CallLog.class).filter("id >=",from_date_timestamp).filter("id <",to_date_timestamp).filter("employee",emp).first().now();
+//	 
+//	 System.out.println(cl);
+//	 if(cl!=null)
+//	 {
+//	 String disposition =cl.getDisposition();
+//	 String src=cl.getSrc();
+//	 String dst=cl.getDst();
+//	 
+//	 System.out.println(disposition);
+//	 System.out.println(src);
+//	 System.out.println(dst);
+//	 if(disposition.equals("Answered"))
+//	   {
+//	   if(src.equals(emp_ext))
+//	   {
+//		JSONObject js = new JSONObject();   
+//		js.put("no_of_incoming",cl.getSrc());
+//		js.put("no_of_outgoing",cl.getDst());
+//		js.put("duration",cl.getDuration());
+//		
+//		
+//	   }
+//	   
+//	   if(dst.equals(emp_ext))
+//	   {
+//		   
+//		   
+//	   }
+//		   
+//	   }
+//	 }
+//	 } 
+//   catch (ParseException e) 
+//   {
+//	// TODO Auto-generated catch block
+//	e.printStackTrace();
+//   }
+   
 	
 	
 }

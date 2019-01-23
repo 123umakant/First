@@ -8,14 +8,14 @@
 <h1>Insert Call Log Data</h1>
 <form action="/calllog" method="post">
 Employee Extension:<input type="text" name="emp_ext"><br><br>
-Calldate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="calldate"><br><br>
+Calldate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="calldate"><br><br>
 Source:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="src"><br><br>
 Destination:<input type="text" name="destination"><br><br>
 Duration:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="duration"><br><br>
 Disposition:<select name="disposition">
 <option> </option>
-<option>Not Answered</option>
-<option>Answered </option>
+<option value="NOT ANSWERED">NOT ANSWERED</option>
+<option value="ANSWERED">ANSWERED </option>
 </select><br><br>
 
 <input type="submit" value="Submit"><br><br>

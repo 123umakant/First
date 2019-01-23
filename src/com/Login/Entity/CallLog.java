@@ -13,7 +13,7 @@ public class CallLog {
 	@Index String dst;
     @Index float duration;
     @Index String disposition;
-    @Index @Load Ref<EmployeeAccount> employee; 
+
     
 	public long getId() {
 		return id;
@@ -53,16 +53,16 @@ public class CallLog {
 	}
 	
 	
-	public CallLog(String calldate, String src, String dst,
-			float duration, String disposition, Ref<EmployeeAccount> employee) {
+	
+	public CallLog(long id, String calldate, String src, String dst,
+			float duration, String disposition) {
 		super();
-		this.id = System.currentTimeMillis();
+		this.id = id;
 		this.calldate = calldate;
 		this.src = src;
 		this.dst = dst;
 		this.duration = duration;
 		this.disposition = disposition;
-		this.employee = employee;
 	}
 	
 	public CallLog() {

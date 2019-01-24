@@ -26,16 +26,28 @@ public class CallLogController extends HttpServlet {
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {
 
- String emp_ext=req.getParameter("emp_ext");
-   String call_date=req.getParameter("calldate");
+   String emp_ext=req.getParameter("emp_ext");
+   String date=req.getParameter("calldate");
    String src=req.getParameter("src");
    String dst=req.getParameter("destination");
    String durati=req.getParameter("duration");
    String disposition=req.getParameter("disposition");
 	
-   System.out.println(call_date);
+   System.out.println(date);
    
-   String call_date_time=call_date;
+   String call_date_time=date;
+   String year = call_date_time.substring(0,4);
+   System.out.println(year);
+   String month= call_date_time.substring(5,8);
+   System.out.println(month);
+   String day = call_date_time.substring(9,10);
+   System.out.println(day);
+   
+   
+   String call_date=day+"-"+month+year;
+   System.out.println(call_date);
+   /*String month= call_date_time.substring(5,7);
+   String date= call_date_time.substring(8,10);*/
    call_date_time= call_date_time+" "+"00:00:00"; 
    java.util.Date call_date_1;
    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

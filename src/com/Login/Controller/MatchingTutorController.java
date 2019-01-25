@@ -26,7 +26,9 @@ public class MatchingTutorController extends HttpServlet {
 
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {
+	
 HttpSession session=req.getSession();
+
 String tut_i=req.getParameter("tutorid");
 String contac=req.getParameter("tutor_contact");
 String tutor_name=req.getParameter("tutor_name");
@@ -51,7 +53,7 @@ TutorDetail tut=new TutorDetail(tut_id, contact, tutor_name, latitude,longitude,
 ofy().save().entity(tut).now();
 
 long enquiry_id=1;
-//long student_id=(long)session.getAttribute(("Latest Enquiry ID"));
+
 Lead ld=ofy().load().type(Lead.class).id(enquiry_id).now();
 
 double latitude1=ld.getLatitude();
@@ -68,9 +70,9 @@ System.out.println(tut.getRadius());
 
 
 if(distance<tut.getRadius())
-{  // zonestr=zone.getZone();
+{  
 System.out.println(tut.getName());
-	}
+}
 
 
 

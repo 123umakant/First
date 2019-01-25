@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
     <%@ page import="static com.Login.database.OfyService.*"%>
     <%@ page import="com.Login.Entity.EmployeeAccount" %>
     <%@ page import="com.Login.Entity.CallLog" %>
@@ -7,16 +8,24 @@
     <%@ page import="java.util.Iterator"%>
     <%@ page import="java.text.SimpleDateFormat"%>
     <%@ page import="java.util.TimeZone"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
+
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Displaying Call Log Information</title>
+
 <style>
+
 td,th{
   padding:30px;
   font-size:15px;
   }
+  
 .button{
   background-color: #008CBA; /* Green */
   border: none;
@@ -33,16 +42,25 @@ td,th{
   }
 
 </style>
+
 </head>
+
 <body>
+
 <h1 style="color:SteelBlue ;">Employee Call Details</h1><br><br>
 
+<!--Form Declaration  -->
 
-<form action="Call_Log_Display.jsp" method="get">
+<form action="Call_Log_Display.jsp" method="post">
+
 From Date:<input type="date" name="from_date" required>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Date:<input type="date" name="to_date" required>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employee Name:<select name=emp_name required>
+
 <option> </option>
+
 <%
 List<EmployeeAccount> list = ofy().load().type(EmployeeAccount.class).list();
 Iterator<EmployeeAccount> itr = list.iterator();
@@ -59,9 +77,13 @@ EmployeeAccount value = itr.next();
 
 </form>
 
+<!--End of Form Declaration  -->
+
+<!--Table Heading  -->
+
 <table border="1">
 <thead class="color"><br><br><br><br><br><br><br><br>
-<th>S.No</th>
+<th>Extension Number</th>
 <th>Employee Name</th>
 <th>No of Incoming</th>
 <th>No of Outgoing</th>
@@ -71,15 +93,27 @@ EmployeeAccount value = itr.next();
 <th>Total Talktime</th>
 </thead>
 
+<!--End of Table Heading  -->
+
+<!--Source Code -->
 <%
+
+float incoming_call_duration=0;
+float outgoing_call_duration=0;
+float incoming_hours=0;
+float incoming_minutes=0;
+float remaining_inc_minutes=0;
+float incoming_seconds=0;
+float outgoing_hours=0;
+float outgoing_minutes=0;
+float remaining_out_minutes=0;
+float outgoing_seconds=0;
 String from=request.getParameter("from_date");
 String to=request.getParameter("to_date");
-/* String emp=request.getParameter("emp_name"); */
-//String emp_name=request.getParameter("emp_name");
+
 String from_date="";
 String to_date="";
-//System.out.println(from_date);
-//System.out.println(to_date);
+
  if(from!=null)
  {
  from_date=from+" "+"00:00:00"; 
@@ -108,7 +142,7 @@ if(emp_name==null||emp_name.equals("All"))
 list1=ofy().load().type(EmployeeAccount.class).list();	
 }
 Iterator<EmployeeAccount> itr1=list1.iterator();
-int count=1;
+/* int count=1; */
 while(itr1.hasNext())
 {
 EmployeeAccount value1=itr1.next();
@@ -117,16 +151,7 @@ int incoming_count=ofy().load().type(CallLog.class).filter("disposition","ANSWER
 int outgoing_count= ofy().load().type(CallLog.class).filter("disposition","ANSWERED").filter("dst",calling_extension).filter("id >=",from_date_timestamp).filter("id <",to_date_timestamp).count();
 
 int total_count = incoming_count+outgoing_count;
-float incoming_call_duration=0;
-float outgoing_call_duration=0;
-float incoming_hours=0;
-float incoming_minutes=0;
-float remaining_inc_minutes=0;
-float incoming_seconds=0;
-float outgoing_hours=0;
-float outgoing_minutes=0;
-float remaining_out_minutes=0;
-float outgoing_seconds=0;
+
 CallLog cl=ofy().load().type(CallLog.class).filter("id >=",from_date_timestamp).filter("id <",to_date_timestamp).filter("disposition","ANSWERED").filter("src",calling_extension).first().now();
 if(cl!=null)
 {
@@ -135,7 +160,6 @@ incoming_hours = Math.round(incoming_call_duration/60) ;
 remaining_inc_minutes=incoming_call_duration-incoming_hours*60; 
 incoming_minutes = remaining_inc_minutes;
 
-/* incoming_seconds = ; */
 }
 CallLog cl1=ofy().load().type(CallLog.class).filter("id >=",from_date_timestamp).filter("id <",to_date_timestamp).filter("disposition","ANSWERED").filter("dst",calling_extension).first().now();
 if(cl1!=null)
@@ -148,29 +172,28 @@ outgoing_minutes = remaining_out_minutes;
 }
 float total_call_duration_hr= incoming_hours+outgoing_hours;
 float total_call_duration_min=incoming_minutes+outgoing_minutes;
-System.out.println(outgoing_count); 
-/* System.out.println("incoming"+incoming_count); */
+
+
 
 %>
+<!--End of Source Code -->
+
+<!--Table body  -->
 <tbody>
-<td><%=count++%></td>
+<td><%=value1.getCalling_extension()%></td>
 <td><%=value1.getName()%></td>
 <td><%=incoming_count %></td>
 <td><%=outgoing_count %></td>
 <td><%=total_count %></td>
-<td><%=incoming_hours+"hr"+" "+incoming_minutes+"min"%></td>
-<td><%=outgoing_call_duration+"min"%></td>
-<td><%=total_call_duration_hr+" "+"hr"+total_call_duration_min+" "+"min"%></td>
+<td><%=incoming_hours+" "+"hr"+" "+incoming_minutes+" "+"min"%></td>
+<td><%=outgoing_hours+" "+"hr"+" "+outgoing_minutes+" "+"min"%></td>
+<td><%=total_call_duration_hr+" "+"hr"+" "+total_call_duration_min+" "+"min"%></td>
 
 <%}}%>
-<%-- <%
-else
-{%>
-<p>Enter correct date</p>
 
-<%}%> --%>
 
 </tbody>
+<!--End of Table body  -->
 
 </table>
 </body>

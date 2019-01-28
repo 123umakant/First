@@ -57,6 +57,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 		JSONObject js=new JSONObject();
 		js.put("id",emp.getEmp_id());
 		js.put("emp_name",emp.getName());
+		js.put("emp_ext",emp.getCalling_extension());
 		js.put("department",emp.getDepartment());
 		js.put("emp_email",emp.getWorkemail());
 		js.put("Phone",emp.getPhone());
@@ -90,6 +91,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	//System.out.println(phone);
 	String emp_id=req.getParameter("employee_id");
 	String emp_name=req.getParameter("employee_name");
+	String emp_ext=req.getParameter("employee_extension");
 	String department=req.getParameter("employee_department");
 	String emp_email=req.getParameter("employee_email");
 	String emp_leave=req.getParameter("emp_leave");
@@ -98,6 +100,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
   
 	emp.setWorkemail(emp_email);
 	emp.setName(emp_name);
+	emp.setCalling_extension(emp_ext);
 	emp.setEmp_id(emp_id);
 	emp.setDepartment(department);
 	emp.setcasual_leaves(emp_total_leave);
@@ -129,7 +132,7 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	    ofy().save().entity(emp_absent).now();
 	    
 	    
-	//    emp_absent.getemployee().get().
+
 	    }
 	
 	catch (ParseException e)

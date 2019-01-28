@@ -57,10 +57,11 @@
          Employee ID:<input type="text" name="emp_id" id="emp_id_id" value="<%=count+1%>"><br><br>
          Employee Contact:<input type="text" name="emp_contact"><br><br>
          Employee Name:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_name"><br><br>
+         Employee Extension:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_extension"><br><br>
          Department:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="department"><br><br>
          Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_email"><br><br>
          Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave"><br><br>
-         Empployee Extension:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_extension"><br><br>
+        
          <input type="hidden" name="action" value="AddEmployee">
          
          <input type="submit"  value="Save">
@@ -90,6 +91,7 @@
         
        &nbsp;&nbsp; Employee Id:&nbsp;&nbsp;<b><span name="employee_id" id="edit_employee_id"></span></b><br><br>
        &nbsp;&nbsp; Employee Name:<input type="text" name="employee_name" id="edit_employee_name"><br><br>
+       &nbsp;&nbsp; Employee Extension:<input type="text" name="employee_extension" id="edit_employee_ext"><br><br>
        &nbsp;&nbsp; Department:&nbsp;<input type="text" name="employee_department" id="edit_employee_department"><br><br>
        &nbsp;&nbsp; Employee Email:&nbsp;&nbsp;&nbsp;<input type="text" name="employee_email"id="edit_employee_email"><br><br>
        &nbsp;&nbsp; Employee Leave:&nbsp;&nbsp;&nbsp;<input type="text" name="emp_leave" id="emp_leave_id"><br><br>
@@ -137,6 +139,7 @@
 <table border="1">
 <th>Employee ID </th>
 <th>Employee Name</th>
+<th>Employee Extension</th>
 <th>Department</th>
 <th>Contact</th>
 <th>Password</th>
@@ -145,6 +148,7 @@
 <th>Employee Leave Left</th>
 
 <% 
+ofy().clear();
 List<EmployeeAccount> list = ofy().load().type(EmployeeAccount.class).list();
 Iterator<EmployeeAccount> itr=list.iterator();
 while(itr.hasNext())
@@ -154,6 +158,7 @@ EmployeeAccount value=itr.next();
 <tr id="row<%=value.getPhone()%>">
 <td><%=value.getEmp_id()%></td>
 <td><%=value.getName() %></td>
+<td><%=value.getCalling_extension() %></td>
 <td><%=value.getDepartment() %></td>
 <td><%=value.getPhone()%></td>
 <td><%=value.getPassword() %></td>
@@ -185,6 +190,7 @@ function editEmployee(id)
       var obj= JSON.parse(data);
       var emp_id=obj.id;
       var emp_name=obj.emp_name;
+      var emp_ext=obj.emp_ext;
       var department=obj.department;
       var emp_email=obj.emp_email;
       var hiddenid=obj.Phone;
@@ -195,6 +201,7 @@ function editEmployee(id)
       document.getElementById("edit_employee_id").innerHTML=emp_id;
  //     ($('#edit_employee_id').val(emp_id));
       ($('#edit_employee_name').val(emp_name));
+      ($('#edit_employee_ext').val(emp_ext));
 	  ($('#edit_employee_department').val(department));
 	  ($('#edit_employee_email').val(emp_email));
       ($('#emp_leave_id').val(emp_leave));

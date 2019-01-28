@@ -117,7 +117,7 @@ String to_date="";
  if(from!=null)
  {
  from_date=from+" "+"00:00:00"; 
- to_date=to+" "+"00:00:00"; 
+ to_date=to+" "+"23:59:59"; 
  
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));

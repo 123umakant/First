@@ -44,6 +44,9 @@ if(leave_type.equals("Casual Leave"))
 //	System.out.println(year);
     String month=date.substring(5,7);
    
+    System.out.println(System.currentTimeMillis());
+    System.out.println(System.currentTimeMillis()-86400000);
+    
     switch (month)
     {
     case "01":

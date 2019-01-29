@@ -18,7 +18,7 @@ public class TutorDetail {
 	@Index String name;
 	@Index String english_fluency;    //english_fluency
 	@Index double longitude;         //tutor longitude
-	@Index double latitude;          //tutor latitute 
+	@Index double latitude;          //tutor latitude 
 	@Index int radius;               //distance teacher can move from its place
 	@Index String profile_pic_url;
 	@Index String client_of;         //teacher assigned to employee name

@@ -58,7 +58,7 @@ long from_time = (to_time) - (86400000);
 
 List <Plans> plans = ofy().load().type(Plans.class).filter("id >=", from_time).filter("id <", to_time).list();
 
-Iterator <Plans> itr2 =plans.iterator();
+Iterator <Plans> itr2 = plans.iterator();
 
 while (itr2.hasNext())
 {

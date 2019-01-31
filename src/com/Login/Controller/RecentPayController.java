@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Login.Entity.Lead;
 import com.Login.Entity.MemberSubjects;
 import com.Login.Entity.Plans;
 import com.Login.Entity.TutorDetail;
@@ -99,44 +100,91 @@ value1.setRating(rating);
 
 rating-- ;
 to_time = from_time;
-from_time = (from_time - (3*86400000 ));
+from_time = (from_time - (3*86400000));
 
 
 }// End of For 
 
-}// End of If
+}// End of Function
 
 public void last_sms(long tutor_contact)
 {
-
-/*
-List<Plans> pl = ofy().load().type(Plans.class).list();
-Iterator<Plans> itr = pl.iterator();
-
-while (itr.hasNext())
-{
-Plans value = itr.next();*/
-
+	
 TutorServices tut = ofy().load().type(TutorServices.class).id(tutor_contact).now();
 LinkedHashSet<Long> list = tut.getClasses_sent();
-long size = list.size();
-long value = 
-Iterator<Long> itr = list.iterator();
+int size = list.size();
+/*Long new_size = (long) size;*/
+/*
+Long new_size = new Long(size);
+list.toArray();
 
-while(itr.hasNext())
+(list.size()-1);*/
+
+Long[] data = new Long[size];
+
+long value = data[size-1].intValue();
+
+Lead ld1 = ofy().load().type(Lead.class).id(value).now();
+
+long last_enquiry_timestamp = ld1.getTimestamp();
+
+long difference = (System.currentTimeMillis()-last_enquiry_timestamp);
+
+float day =(difference/86400000) ;
+
+MemberSubjects ms = ofy().load().type(MemberSubjects.class).id(last_enquiry_timestamp).now();
+
+if(day<1)
 {
-	
-	
-	
+ms.setRating(1);			
 }
 
-
-
-
+else if (day<2)
+{
+ms.setRating(2);		
 }
 
+else if (day<3)
+{
+ms.setRating(3);	
+}
 
+else if (day<4)
+{
+ms.setRating(4);		
+}
 
+else if (day<5)
+{
+ms.setRating(5);		
+}
+
+else if (day<6)
+{
+ms.setRating(6);			
+}
+
+else if (day<7)
+{
+ms.setRating(7);		
+}
+
+else if (day<8)
+{
+ms.setRating(8);		
+}
+
+else if (day<9)
+{
+ms.setRating(9);			
+}
+
+else if (day<10)
+{
+ms.setRating(10);		
+}
+
+}
 
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {

@@ -112,7 +112,7 @@ public class MemberSubjects {
 			String subject, double qual_score, String gender, double lat,
 			double lng, int radius, int price, int experience, float rating) {
 		super();
-		this.id=System.currentTimeMillis();
+		this.id=1548979200000l;
 		this.tutor = tutor;
 		this.course = course;
 		this.subject = subject;

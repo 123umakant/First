@@ -12,6 +12,7 @@ import com.Login.Entity.FormData;
 import com.Login.Entity.Lead;
 import com.Login.Entity.LoginTutor;
 import com.Login.Entity.Login_Details;
+import com.Login.Entity.MemberSubjects;
 import com.Login.Entity.Plans;
 import com.Login.Entity.ServiceData;
 import com.Login.Entity.ServiceFeedback;
@@ -19,6 +20,7 @@ import com.Login.Entity.StudentDetail;
 import com.Login.Entity.StudentLoginDetails;
 import com.Login.Entity.TeacherFollowUp;
 import com.Login.Entity.TutorDetail;
+import com.Login.Entity.TutorServices;
 import com.Login.Entity.Zone;
 import com.Login.Entity.Phone;
 import com.Login.Entity.Email;
@@ -46,6 +48,8 @@ public class OfyService {
 		factory().register(EmployeeAccount.class);
 		factory().register(EmployeeAbsentRecord.class);
 		factory().register(CallLog.class);
+		factory().register(TutorServices.class);
+		factory().register(MemberSubjects.class);
 	}
 	public static Objectify ofy()
 	{

@@ -24,6 +24,45 @@ import static com.Login.database.OfyService.*;
 
 public class RecentPayController extends HttpServlet {
 	
+public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
+	{
+		
+	PrintWriter out = res.getWriter();
+	String action = req.getParameter(" ");
+
+
+	List<Plans> pl = ofy().load().type(Plans.class).filter("contact_views >", 0).list();
+
+	/*.filter("expirytimestamp >",System.currentTimeMillis())*/
+
+
+	Iterator<Plans> itr = pl.iterator();
+
+	while(itr.hasNext())
+	{
+
+	Plans value = itr.next();
+	long expirytimestamp = value.getExpirytimestamp();
+
+	if(expirytimestamp > System.currentTimeMillis())
+	{
+
+	long id = value.getId();	
+	long last_active_timestamp = value.getExpirytimestamp();
+	long tutor_contact = value.getTutor().get().getContact();	
+
+	System.out.println(tutor_contact);
+	
+	RecentPay(id);
+	last_active_timestamp(last_active_timestamp);
+	last_sms(tutor_contact);
+		
+	}
+		
+	}
+
+	}// End of Post 
+
 public void RecentPay(long id)
 	{
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -54,6 +93,7 @@ public void RecentPay(long id)
 		
 	MemberSubjects value1 =itr1.next();
 	value1.setRating(rating);
+	ofy().save().entity(value1).now();
 
 	}// End of Inner While 
 
@@ -93,7 +133,7 @@ while(itr1.hasNext())
 {
 MemberSubjects value1 = itr1.next();
 value1.setRating(rating);
-	
+ofy().save().entity(value1).now();	
 }// End of Inner While
 
 }// End of Outer While
@@ -112,19 +152,52 @@ public void last_sms(long tutor_contact)
 	
 TutorServices tut = ofy().load().type(TutorServices.class).id(tutor_contact).now();
 LinkedHashSet<Long> list = tut.getClasses_sent();
+
+/*Object object=list.toArray();
+
+
+ object.getClass();
+
+System.out.println(list[i-1]);
+list.get(list.size()-1);*/
+
+Iterator<Long> itr = list.iterator();
+Long value1 = null ;
+
+/*Object [] value1 =  list.toArray();
+ 
+long  a=  Long.parseLong(value1.toString());*/
+
+/*System.out.println(a);*/
+
+while(itr.hasNext())
+{
+	
+value1 = itr.next();	
+
+}
+
+/*System.out.println(value1);
+
 int size = list.size();
-/*Long new_size = (long) size;*/
-/*
+System.out.println(size);
+
+Long new_size = (long) size;
+
 Long new_size = new Long(size);
 list.toArray();
 
-(list.size()-1);*/
+(list.size()-1);
+Long[] data = new Long[size];
+
+//System.out.println(data[data.length-1]);
 
 Long[] data = new Long[size];
 
-long value = data[size-1].intValue();
+long value = data[size-1].longValue();
+System.out.println(value);*/
 
-Lead ld1 = ofy().load().type(Lead.class).id(value).now();
+Lead ld1 = ofy().load().type(Lead.class).id(value1).now();
 
 long last_enquiry_timestamp = ld1.getTimestamp();
 
@@ -136,7 +209,7 @@ MemberSubjects ms = ofy().load().type(MemberSubjects.class).id(last_enquiry_time
 
 if(day<1)
 {
-ms.setRating(1);			
+ms.setRating(1);
 }
 
 else if (day<2)
@@ -184,33 +257,8 @@ else if (day<10)
 ms.setRating(10);		
 }
 
+ofy().save().entity(ms).now();
 }
 
-public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
-{
-	
-PrintWriter out = res.getWriter();
-String action = req.getParameter(" ");
 
-
-List<Plans> pl = ofy().load().type(Plans.class).filter("contact_views >", 0).filter("expirytimestamp >",System.currentTimeMillis()).list();
-
-Iterator<Plans> itr = pl.iterator();
-
-while(itr.hasNext())
-{
-
-Plans value = itr.next();
-
-long id = value.getId();	
-long last_active_timestamp = value.getExpirytimestamp();
-long tutor_contact = value.getTutor().get().getContact();	
-
-RecentPay(id);
-last_active_timestamp(last_active_timestamp);
-last_sms(tutor_contact);
-	
-}
-	
-}// End of Post 
 }// End of class

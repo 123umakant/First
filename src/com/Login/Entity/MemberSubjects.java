@@ -17,8 +17,10 @@ public class MemberSubjects {
 	@Index int radius;
 	@Index int price;
 	@Index int experience;
-	@Index float rating;
 	
+	@Index float last_active_rating;
+	@Index float recentPay_rating;
+	@Index float last_sms_rating;
 	
 	public Ref<TutorDetail> getTutor() {
 		return tutor;
@@ -100,19 +102,39 @@ public class MemberSubjects {
 		this.experience = experience;
 	}
 	
-	public float getRating() {
-		return rating;
+	public float getLast_active_rating() {
+		return last_active_rating;
 	}
 
-	public void setRating(float rating) {
-		this.rating = rating;
+	public void setLast_active_rating(float last_active_rating) {
+		this.last_active_rating = last_active_rating;
 	}
+
+	public float getRecentPay_rating() {
+		return recentPay_rating;
+	}
+
+	public void setRecentPay_rating(float recentPay_rating) {
+		this.recentPay_rating = recentPay_rating;
+	}
+
+	public float getLast_sms_rating() {
+		return last_sms_rating;
+	}
+
+	public void setLast_sms_rating(float last_sms_rating) {
+		this.last_sms_rating = last_sms_rating;
+	}
+
+	
 
 	public MemberSubjects(Ref<TutorDetail> tutor, String course,
 			String subject, double qual_score, String gender, double lat,
-			double lng, int radius, int price, int experience, float rating) {
+			double lng, int radius, int price, int experience,
+			float last_active_rating, float recentPay_rating,
+			float last_sms_rating) {
 		super();
-		this.id=1548979200000l;
+		this.id = 1548979200000l;
 		this.tutor = tutor;
 		this.course = course;
 		this.subject = subject;
@@ -123,7 +145,9 @@ public class MemberSubjects {
 		this.radius = radius;
 		this.price = price;
 		this.experience = experience;
-		this.rating = rating;
+		this.last_active_rating = last_active_rating;
+		this.recentPay_rating = recentPay_rating;
+		this.last_sms_rating = last_sms_rating;
 	}
 
 	public MemberSubjects()

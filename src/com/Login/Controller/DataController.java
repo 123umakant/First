@@ -35,12 +35,32 @@ long contact =7836870129l;
 TutorDetail tut = ofy().load().type(TutorDetail.class).id(contact).now();
 	
 
-
-	
-MemberSubjects ms = new MemberSubjects(Ref.create(tut),"B.Tech","Maths",(double)0.0,"male",(double)0.0,(double)0.0,5,3000,5,5);
-	
+MemberSubjects ms = new MemberSubjects(Ref.create(tut),"B.Tech","Maths",(double)0.0,"male",(double)0.0,(double)0.0,5,3000,5,5,6,7);
 
 ofy().save().entity(ms).now();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 	public MemberSubjects(Ref<TutorDetail> tutor, String course,

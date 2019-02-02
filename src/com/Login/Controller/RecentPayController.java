@@ -48,33 +48,114 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOExcept
 	{
 
 	long id = value.getId();	
-	long last_active_timestamp = value.getExpirytimestamp();
+	
 	long tutor_contact = value.getTutor().get().getContact();	
 
+	long last_active_timestamp = value.getTutor().get().getLastactivetimestamp();
+	
 	System.out.println(tutor_contact);
 	
-	RecentPay(id);
-	last_active_timestamp(last_active_timestamp);
-	last_sms(tutor_contact);
+	RecentPay(id);//calling recent pay
+	
+	last_active(last_active_timestamp);//calling last active
+	
+	last_sms(tutor_contact);//calling last sms
 		
-	}
+	}//End of if 
 		
-	}
+	}//End of while
 
-	}// End of Post 
+	}//End of Post 
 
 public void RecentPay(long id)
 	{
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	Plans pl = ofy().load().type(Plans.class).id(id).now();
+	
+	TutorDetail tut = pl.getTutor().get();
+	
+	MemberSubjects ms = ofy().load().type(MemberSubjects.class).filter("tutor",Ref.create(tut)).first().now();
+	
+    long current_time = System.currentTimeMillis();
+    
+    long difference = (current_time - id) ;
+
+    float day =(difference / 86400000);
+    
+    if (day <= 18)
+    {
+    	ms.setRecentPay_rating(10);	
+    }
+    
+    else if (day <= 36)
+    {
+    	ms.setRecentPay_rating(9);
+    	
+    }
+    
+    else if (day <= 54)
+    {
+    	ms.setRecentPay_rating(8);
+    	
+    }
+    
+    else if (day <= 72)
+    {
+    	ms.setRecentPay_rating(7);
+    	
+    }
+    
+    else if (day <= 90)
+    {
+    	ms.setRecentPay_rating(6);
+    	
+    }
+    
+    else if (day <= 108)
+    {
+    	ms.setRecentPay_rating(5);
+    }
+
+    else if (day <= 126)
+    {
+    	
+    	ms.setRecentPay_rating(4);
+    }
+
+    else if (day <= 144)
+    {
+    	ms.setRecentPay_rating(3);
+    	
+    }
+    
+    else if (day <= 162)
+    {
+    	
+    	ms.setRecentPay_rating(2);	
+    }
+    
+    else if (day > 162)
+    {
+    	
+    	ms.setRecentPay_rating(1);	
+    }
+    	
+    	
+  ofy().save().entity(ms).now();  	
+    	
+	}// End of for   
+
+
+  /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkatta"));
 
 	long to_time = System.currentTimeMillis();
 	long from_time=(to_time)-(18*86400000);
 	float rating = 10 ;
 	for (int i=1 ; i<=10; i++)
-	{
-
-	List<Plans> pl = ofy().load().type(Plans.class).filter("id >=", from_time).filter("id <", to_time).list();
+	{*/
+  
+	/*List<Plans> pl = ofy().load().type(Plans.class).filter("id >=", from_time).filter("id <", to_time).list();
 
 	Iterator<Plans> itr = pl.iterator();
 
@@ -92,7 +173,7 @@ public void RecentPay(long id)
 	{
 		
 	MemberSubjects value1 =itr1.next();
-	value1.setRating(rating);
+	value1.setRecentPay_rating(rating);
 	ofy().save().entity(value1).now();
 
 	}// End of Inner While 
@@ -102,15 +183,91 @@ public void RecentPay(long id)
 	rating--;
 	to_time = from_time;
 	from_time = (from_time) - (18*86400000);
+		*/
 		
-		
-	}// End of for 
-	}// End of function
 
-public void last_active_timestamp(long last_active)
+	
+public void last_active(long last_active_timestamp)
+{
+	
+TutorDetail td = ofy().load().type(TutorDetail.class).filter("lastactivetimestamp",last_active_timestamp).first().now();
+
+MemberSubjects ms = ofy().load().type(MemberSubjects.class).filter("tutor",Ref.create(td)).first().now();
+
+long current_time = System.currentTimeMillis();
+
+long difference =(current_time - last_active_timestamp);
+
+float day =(difference / 86400000) ;
+
+
+if (day <= 3)
+{
+ms.setLast_active_rating(10);
+}
+
+else if(day <= 6)
+{
+ms.setLast_active_rating(9);	
+}
+
+else if(day <= 9)
 {
 
-long from_time =System.currentTimeMillis();
+ms.setLast_active_rating(8);	
+	
+}
+
+else if(day <= 12)
+{
+	
+ms.setLast_active_rating(7);	
+}
+
+else if(day <= 15)
+{
+	
+ms.setLast_active_rating(6);	
+	
+}
+
+else if (day <= 18)
+{
+	
+ms.setLast_active_rating(5);
+
+}
+
+else if (day <= 21)
+{
+ms.setLast_active_rating(4);
+	
+}
+
+else if (day <= 24)
+{
+ms.setLast_active_rating(3);
+	
+}
+
+else if (day <= 27)
+{
+ms.setLast_active_rating(2);
+}
+
+else if (day > 27)
+{
+	
+ms.setLast_active_rating(1);	
+	
+}
+	
+ofy().save().entity(ms).now();	
+
+}// End of Function
+	
+
+/*long from_time =System.currentTimeMillis();
 long to_time = (from_time) - (3*86400000);
 float rating = 10; 
 
@@ -132,8 +289,9 @@ Iterator<MemberSubjects> itr1 = ms.iterator();
 while(itr1.hasNext())
 {
 MemberSubjects value1 = itr1.next();
-value1.setRating(rating);
+value1.setLast_active_rating(rating);
 ofy().save().entity(value1).now();	
+
 }// End of Inner While
 
 }// End of Outer While
@@ -144,8 +302,8 @@ from_time = (from_time - (3*86400000));
 
 
 }// End of For 
+*/
 
-}// End of Function
 
 public void last_sms(long tutor_contact)
 {
@@ -153,22 +311,8 @@ public void last_sms(long tutor_contact)
 TutorServices tut = ofy().load().type(TutorServices.class).id(tutor_contact).now();
 LinkedHashSet<Long> list = tut.getClasses_sent();
 
-/*Object object=list.toArray();
-
-
- object.getClass();
-
-System.out.println(list[i-1]);
-list.get(list.size()-1);*/
-
 Iterator<Long> itr = list.iterator();
 Long value1 = null ;
-
-/*Object [] value1 =  list.toArray();
- 
-long  a=  Long.parseLong(value1.toString());*/
-
-/*System.out.println(a);*/
 
 while(itr.hasNext())
 {
@@ -176,6 +320,84 @@ while(itr.hasNext())
 value1 = itr.next();	
 
 }
+
+Lead ld1 = ofy().load().type(Lead.class).id(value1).now();
+
+long last_enquiry_timestamp = ld1.getTimestamp();
+
+long difference = (System.currentTimeMillis()-last_enquiry_timestamp);
+
+float day =(difference/86400000);
+
+MemberSubjects ms = ofy().load().type(MemberSubjects.class).id(last_enquiry_timestamp).now();
+
+if(day<=1)
+{
+ms.setLast_sms_rating(1);
+}
+
+else if (day<=2)
+{
+ms.setLast_sms_rating(2);		
+}
+
+else if (day<=3)
+{
+ms.setLast_sms_rating(3);	
+}
+
+else if (day<=4)
+{
+ms.setLast_sms_rating(4);		
+}
+
+else if (day<=5)
+{
+ms.setLast_sms_rating(5);		
+}
+
+else if (day<=6)
+{
+ms.setLast_sms_rating(6);			
+}
+
+else if (day<=7)
+{
+ms.setLast_sms_rating(7);		
+}
+
+else if (day<=8)
+{
+ms.setLast_sms_rating(8);		
+}
+
+else if (day<=9)
+{
+ms.setLast_sms_rating(9);			
+}
+
+else if (day>=10)
+{
+ms.setLast_sms_rating(10);		
+}
+
+ofy().save().entity(ms).now();
+}
+
+}// End of class
+/*Object object=list.toArray();
+
+
+object.getClass();
+
+System.out.println(list[i-1]);
+list.get(list.size()-1);*/
+
+/*Object [] value1 =  list.toArray();
+ 
+long  a=  Long.parseLong(value1.toString());*/
+
+/*System.out.println(a);*/
 
 /*System.out.println(value1);
 
@@ -197,68 +419,4 @@ Long[] data = new Long[size];
 long value = data[size-1].longValue();
 System.out.println(value);*/
 
-Lead ld1 = ofy().load().type(Lead.class).id(value1).now();
 
-long last_enquiry_timestamp = ld1.getTimestamp();
-
-long difference = (System.currentTimeMillis()-last_enquiry_timestamp);
-
-float day =(difference/86400000) ;
-
-MemberSubjects ms = ofy().load().type(MemberSubjects.class).id(last_enquiry_timestamp).now();
-
-if(day<1)
-{
-ms.setRating(1);
-}
-
-else if (day<2)
-{
-ms.setRating(2);		
-}
-
-else if (day<3)
-{
-ms.setRating(3);	
-}
-
-else if (day<4)
-{
-ms.setRating(4);		
-}
-
-else if (day<5)
-{
-ms.setRating(5);		
-}
-
-else if (day<6)
-{
-ms.setRating(6);			
-}
-
-else if (day<7)
-{
-ms.setRating(7);		
-}
-
-else if (day<8)
-{
-ms.setRating(8);		
-}
-
-else if (day<9)
-{
-ms.setRating(9);			
-}
-
-else if (day<10)
-{
-ms.setRating(10);		
-}
-
-ofy().save().entity(ms).now();
-}
-
-
-}// End of class

@@ -343,7 +343,7 @@ public class Lead {
 	public Lead(String zone,long enq_id, String name, String date, String pincode,
 			String area,String email, String enq_handled_by, String cls, String subject,
 			String address, String sex_pref,String teachingmode, String contact,
-			String alt_contact, String fees, String demo_time,String demowilltell, String status,double longitude,double latitude,String leadsource,String requirements,String[] mode,String start_time,long timestamp) {
+			String alt_contact, String fees, String demo_time,String demowilltell, String status,double latitude,double longitude,String leadsource,String requirements,String[] mode,String start_time,long timestamp) {
 		super();
 		this.zone = zone;
 		this.enq_id = enq_id;
@@ -364,8 +364,8 @@ public class Lead {
 		this.demowilltell = demowilltell;
 		this.status = status;
 		this.teaching_mode=teachingmode;
+		this.latitude=latitude;
 	    this.longitude=longitude;
-	    this.latitude=latitude;
 	    this.leadsource=leadsource;
 	    this.parentsrequirements=requirements;
 		this.mode=mode;

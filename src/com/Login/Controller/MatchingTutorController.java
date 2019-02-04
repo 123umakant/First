@@ -26,8 +26,86 @@ public class MatchingTutorController extends HttpServlet {
 
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {
+
+
 	
-HttpSession session=req.getSession();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*HttpSession session=req.getSession();
 
 String tut_i=req.getParameter("tutorid");
 String contac=req.getParameter("tutor_contact");
@@ -73,7 +151,7 @@ if(distance<tut.getRadius())
 {  
 System.out.println(tut.getName());
 }
-
+*/
 
 
 

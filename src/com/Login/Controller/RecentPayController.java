@@ -311,7 +311,15 @@ public void last_sms(long tutor_contact)
 TutorServices tut = ofy().load().type(TutorServices.class).id(tutor_contact).now();
 LinkedHashSet<Long> list = tut.getClasses_sent();
 
-Iterator<Long> itr = list.iterator();
+Object [] arr = list.toArray();
+
+Object value = (arr[arr.length-1]);
+
+long value1 = (long)value;
+
+System.out.println(value1);
+
+/*Iterator<Long> itr = list.iterator();
 Long value1 = null ;
 
 while(itr.hasNext())
@@ -319,7 +327,7 @@ while(itr.hasNext())
 	
 value1 = itr.next();	
 
-}
+}*/
 
 Lead ld1 = ofy().load().type(Lead.class).id(value1).now();
 
@@ -385,6 +393,7 @@ ofy().save().entity(ms).now();
 }
 
 }// End of class
+
 /*Object object=list.toArray();
 
 

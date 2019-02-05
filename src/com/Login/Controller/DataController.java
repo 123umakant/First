@@ -35,12 +35,15 @@ long contact =7836870129l;
 TutorDetail tut = ofy().load().type(TutorDetail.class).id(contact).now();
 	
 
-MemberSubjects ms = new MemberSubjects(Ref.create(tut),"B.Tech","Maths",(double)0.0,"male",(double)0.0,(double)0.0,5,3000,5,5,6,7);
+MemberSubjects ms = new MemberSubjects(Ref.create(tut),"B.Tech","Maths",(double)0.0,"male",(double)28.6492,(double)77.162849,5,3000,5,5,6,7);
 
+/*MemberSubjects ms = new MemberSubjects(tutor, course, subject, qual_score, gender, lat, lng, radius, price, experience, last_active_rating, recentPay_rating, last_sms_rating)*/
 ofy().save().entity(ms).now();
 
 
+}
 
+}
 
 
 
@@ -232,6 +235,4 @@ catch (ParseException e)
 
 
 	
-}
 
-}

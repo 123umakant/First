@@ -45,7 +45,7 @@ public class Lead {
 	@Index String area;
 	@Index String teaching_mode;
 	
-
+    
 	public String getzone() {
 		return message;
 	}
@@ -315,6 +315,22 @@ public class Lead {
 	}
 
 
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
 	public Lead(long enq_id, String name,String date, String email, String cls,
 			String subject, String address, String sex_pref, String contact,
 			String alt_contact, String fees, String[] mode, double longitude,
@@ -343,7 +359,7 @@ public class Lead {
 	public Lead(String zone,long enq_id, String name, String date, String pincode,
 			String area,String email, String enq_handled_by, String cls, String subject,
 			String address, String sex_pref,String teachingmode, String contact,
-			String alt_contact, String fees, String demo_time,String demowilltell, String status,double latitude,double longitude,String leadsource,String requirements,String[] mode,String start_time,long timestamp) {
+			String alt_contact, String fees, String demo_time,String demowilltell, String status,double latitude,double longitude,String leadsource,String requirements,String[] mode,String start_time,long timestamp,String course) {
 		super();
 		this.zone = zone;
 		this.enq_id = enq_id;
@@ -371,6 +387,7 @@ public class Lead {
 		this.mode=mode;
 	    this.start_time=start_time;
 	    this.timestamp=timestamp;
+	    this.course = course;
 	}
 
 	public Lead()

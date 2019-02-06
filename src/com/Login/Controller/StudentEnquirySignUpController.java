@@ -44,23 +44,11 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	String sex_prefe=req.getParameter("sex_pref");
 	double latitude=Double.parseDouble(latitud);
 	double longitude=Double.parseDouble(longitud);
-	//String teaching_mode=(Arrays.toString(teaching_mode));
-//	System.out.println(Arrays.toString(mode));
+
+	
 	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, sex_prefe, contact, alt_contact, fees, mode, longitude, latitude, start_time, message, area);
 	ofy().save().entity(ld).now();	
-//	Lead lead=ofy().load().type(Lead.class).
-//	for(int i=0;i<teaching_mode.length;i++)
-//	{
-		
-//		System.out.println(teaching_mode[i]);
-//	}
-	//String[] parts = teaching_mode.
-	//System.out.println(teaching_mode);
-//	  for(String value :teaching_mode)
-//	     {
-//    System.out.println(value);
-//	     } 
-	//
+
 	
 	StudentLoginDetails login=ofy().load().type(StudentLoginDetails.class).id(contact).now();
 	if(login==null)
@@ -74,7 +62,7 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	{
     StudentDetail student1=ofy().load().type(StudentDetail.class).id(contact).now();
     LinkedHashSet<Long> list1=student1.getEnq_list();
-  //  System.out.println(list1);
+    
     list1.add(enq_id);
     student1.setEnq_list(list1);
 	ofy().save().entity(student1).now();	
@@ -84,7 +72,7 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	   StudentDetail student= ofy().load().type(StudentDetail.class).id(contact).now();
 	   LinkedHashSet<Long> list=student.getEnq_list();
 	   int count= list.size();
-	//   System.out.println(count);
+	
 		 
 	   HttpSession session = req.getSession();
 	   session.setAttribute("Phone",contact);   

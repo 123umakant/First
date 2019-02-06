@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,14 +28,7 @@ public class RecentPayController extends HttpServlet {
 public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 	{
 		
-	PrintWriter out = res.getWriter();
-	String action = req.getParameter(" ");
-
-
 	List<Plans> pl = ofy().load().type(Plans.class).filter("contact_views >", 0).list();
-
-	/*.filter("expirytimestamp >",System.currentTimeMillis())*/
-
 
 	Iterator<Plans> itr = pl.iterator();
 
@@ -145,48 +139,6 @@ public void RecentPay(long id)
     	
 	}// End of for   
 
-
-  /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkatta"));
-
-	long to_time = System.currentTimeMillis();
-	long from_time=(to_time)-(18*86400000);
-	float rating = 10 ;
-	for (int i=1 ; i<=10; i++)
-	{*/
-  
-	/*List<Plans> pl = ofy().load().type(Plans.class).filter("id >=", from_time).filter("id <", to_time).list();
-
-	Iterator<Plans> itr = pl.iterator();
-
-	while (itr.hasNext())
-	{
-	Plans value = itr.next();
-
-	TutorDetail tutor = value.getTutor().get();
-
-	List<MemberSubjects> ms = ofy().load().type(MemberSubjects.class).filter("tutor",Ref.create(tutor)).list();
-
-	Iterator <MemberSubjects> itr1 = ms.iterator();
-
-	while(itr1.hasNext())
-	{
-		
-	MemberSubjects value1 =itr1.next();
-	value1.setRecentPay_rating(rating);
-	ofy().save().entity(value1).now();
-
-	}// End of Inner While 
-
-	} // End of Outer While
-
-	rating--;
-	to_time = from_time;
-	from_time = (from_time) - (18*86400000);
-		*/
-		
-
-	
 public void last_active(long last_active_timestamp)
 {
 	
@@ -267,44 +219,6 @@ ofy().save().entity(ms).now();
 }// End of Function
 	
 
-/*long from_time =System.currentTimeMillis();
-long to_time = (from_time) - (3*86400000);
-float rating = 10; 
-
-for(int i = 1; i<=10; i++)
-{
-List<Plans> pl = ofy().load().type(Plans.class).filter("expirytimestamp >=",from_time).filter("expirytimestamp <" ,to_time).list();
-
-Iterator<Plans> itr = pl.iterator();
-
-while(itr.hasNext())
-{
-Plans value = itr.next();
-
-TutorDetail tutor = value.getTutor().get();
-
-List<MemberSubjects> ms = ofy().load().type(MemberSubjects.class).filter("tutor",Ref.create(tutor)).list();
-Iterator<MemberSubjects> itr1 = ms.iterator();
-
-while(itr1.hasNext())
-{
-MemberSubjects value1 = itr1.next();
-value1.setLast_active_rating(rating);
-ofy().save().entity(value1).now();	
-
-}// End of Inner While
-
-}// End of Outer While
-
-rating-- ;
-to_time = from_time;
-from_time = (from_time - (3*86400000));
-
-
-}// End of For 
-*/
-
-
 public void last_sms(long tutor_contact)
 {
 	
@@ -317,17 +231,7 @@ Object value = (arr[arr.length-1]);
 
 long value1 = (long)value;
 
-System.out.println(value1);
-
-/*Iterator<Long> itr = list.iterator();
-Long value1 = null ;
-
-while(itr.hasNext())
-{
-	
-value1 = itr.next();	
-
-}*/
+/*System.out.println(value1);*/
 
 Lead ld1 = ofy().load().type(Lead.class).id(value1).now();
 
@@ -393,39 +297,5 @@ ofy().save().entity(ms).now();
 }
 
 }// End of class
-
-/*Object object=list.toArray();
-
-
-object.getClass();
-
-System.out.println(list[i-1]);
-list.get(list.size()-1);*/
-
-/*Object [] value1 =  list.toArray();
- 
-long  a=  Long.parseLong(value1.toString());*/
-
-/*System.out.println(a);*/
-
-/*System.out.println(value1);
-
-int size = list.size();
-System.out.println(size);
-
-Long new_size = (long) size;
-
-Long new_size = new Long(size);
-list.toArray();
-
-(list.size()-1);
-Long[] data = new Long[size];
-
-//System.out.println(data[data.length-1]);
-
-Long[] data = new Long[size];
-
-long value = data[size-1].longValue();
-System.out.println(value);*/
 
 

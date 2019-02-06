@@ -21,6 +21,7 @@ public class MemberSubjects {
 	@Index float last_active_rating;
 	@Index float recentPay_rating;
 	@Index float last_sms_rating;
+	@Index String Plan_type;
 	
 	public Ref<TutorDetail> getTutor() {
 		return tutor;
@@ -126,7 +127,13 @@ public class MemberSubjects {
 		this.last_sms_rating = last_sms_rating;
 	}
 
-	
+	public String getPlan_type() {
+		return Plan_type;
+	}
+
+	public void setPlan_type(String plan_type) {
+		Plan_type = plan_type;
+	}
 
 	public MemberSubjects(Ref<TutorDetail> tutor, String course,
 			String subject, double qual_score, String gender, double lat,
@@ -134,7 +141,7 @@ public class MemberSubjects {
 			float last_active_rating, float recentPay_rating,
 			float last_sms_rating) {
 		super();
-		this.id = 1548979200000l;
+		this.id = 1549411200000l;
 		this.tutor = tutor;
 		this.course = course;
 		this.subject = subject;

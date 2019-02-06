@@ -16,6 +16,8 @@
 
 
   <sessions-enabled>true</sessions-enabled>
+  <runtime>java8</runtime>
+  
   <!--
     HTTP Sessions are disabled by default. To enable HTTP sessions specify:
 

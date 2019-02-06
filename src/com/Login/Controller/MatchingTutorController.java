@@ -1,14 +1,12 @@
 package com.Login.Controller;
 
-import static com.Login.database.OfyService.*;
+import static com.Login.database.OfyService.ofy;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -17,18 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import Formula.Distance;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import com.Login.Entity.Lead;
-import com.Login.Entity.LoginTutor;
 import com.Login.Entity.MemberSubjects;
 import com.Login.Entity.TutorDetail;
-import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
-import com.googlecode.objectify.annotation.Load;
 
 public class MatchingTutorController extends HttpServlet {
 
@@ -47,9 +39,9 @@ double longitude = Double.parseDouble(longitud);
 int km =2;
 
 double to_latitude = latitude+km*0.008993182000001099 ;
-double to_longitude = longitude+km*0.010258364990164637 ;
-
 double from_latitude = latitude-km*0.008993182000001099 ;
+
+double to_longitude = longitude+km*0.010258364990164637 ;
 double from_longitude = longitude-km*0.010258364990164637 ;
 
 System.out.println(course);
@@ -61,14 +53,23 @@ System.out.println(from_longitude);
 System.out.println(from_longitude);
 
 HashMap<Long,Float> hmap = new HashMap<Long,Float>();
+JSONObject json = new JSONObject();
+
+JSONArray jsonarray = new JSONArray();
 
 List<MemberSubjects> ms=null;
+
+/*while (hmap.size()<20)
+{*/
 if(!sex_pref.equals("any"))
 {
-	ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).filter("sex_pref",sex_pref).list();
-}else
-	 ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).filter("sex_pref",sex_pref).list();
+ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).filter("gender",sex_pref).list();
+	System.out.println("Inside If");
+}
+else
 	
+ ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).list();
+
 System.out.println("hello");
 
 Iterator<MemberSubjects> itr = ms.iterator();
@@ -78,95 +79,8 @@ while (itr.hasNext())
 System.out.println("hello again");
 MemberSubjects value = itr.next();
 
-float Recent_Pay_Rating = value.getRecentPay_rating();
-float Last_Active_Rating = value.getLast_active_rating();
-float Last_Sms_Rating = value.getLast_sms_rating();
-
-
-float total_Rating = Recent_Pay_Rating+Last_Active_Rating+Last_Sms_Rating ;
-long tutor_contact = value.getTutor().get().getContact();
-
-System.out.println(total_Rating);
-System.out.println(tutor_contact);
-
-hmap.put(tutor_contact,total_Rating);
-
-System.out.println(hmap);
-
-}// End of While 
-
-
-
-
-
-
-
-}
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-/*String to_latitude = latitude+2*
-
-String 
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*
-else 
+if((value.getLng()>from_longitude) && (value.getLng()<to_longitude))
 {
-	
-List<MemberSubjects> ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).list();	
-	
-Iterator<MemberSubjects> itr = ms.iterator();
-
-while (itr.hasNext())
-{
-System.out.println("hello again");
-MemberSubjects value = itr.next();
 
 float Recent_Pay_Rating = value.getRecentPay_rating();
 float Last_Active_Rating = value.getLast_active_rating();
@@ -182,138 +96,119 @@ System.out.println(tutor_contact);
 hmap.put(tutor_contact,total_Rating);
 
 System.out.println(hmap);
+int size = hmap.size();
 
-}// End of While 
+if(size <20)
+{	
+km = km+1;	
+}
 
-}// End of Else
-*/
+}// End of If
+}// End of Inner While 
 
+//}// End of Outer While
 
-
-/*else if(sex_pref.equals("Female"))
+for (long contact:hmap.keySet())
 {
+long tutor_contact = contact;
+
+TutorDetail tut = ofy().load().type(TutorDetail.class).id(contact).now();
+
+String name = tut.getName();
+String age = tut.getDob();
+String gender = tut.getGender();
+String qualification = tut.getQualification();
+int experience = tut.getExperience();
+String last_login = tut.getLastactivedate();
+String area = tut.getArea();
+
+String distance = " ";
+json.put("tutor_contact",tutor_contact);
+json.put("tutor_name",name);
+json.put("tutor_age",age);
+json.put("tutor_gender",gender);
+json.put("tutor_qualification", qualification);
+json.put("tutor_experience", experience);
+json.put("tutor_last_login",last_login);
+json.put("tutor_area", area);
+
+System.out.println("Contact No :" +contact);
 	
-List<MemberSubjects> ms = ofy().load().type(MemberSubjects.class).filter("lat >=",from_latitude).filter("lat <",to_latitude).filter("course",course).filter("subject",subject).filter("sex_pref",sex_pref).list();	
+}
 	
+
+jsonarray.put(json);
+
+}// End of Post
+
+public static double distance(double lat1, double lon1, double lat2,
+		double lon2) {
+	 final int R = 6371; // Radius of the earth
+
+	    double latDistance = Math.toRadians(lat2 - lat1);
+	    double lonDistance = Math.toRadians(lon2 - lon1);
+	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+	            + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+	            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    double distance = R * c * 1000; // convert to meters
+
+	    
+
+	    
+
+	    return distance;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}// End of Class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*private static Map<Long, Double> sortByValue(Map<Long, Double> unsortMap,
+final boolean order) 
+{
+	  //for ASCENDING order order=true
+	  List<Entry<Long,Double>> list = new LinkedList<>(unsortMap.entrySet());
+
+// Sorting the list based on values 
+	  list.sort((o1, o2) -> order ?
+o1.getValue().compareTo(o2.getValue()) == 0 ?
+o1.getKey().compareTo(o2.getKey()) : o1.getValue().compareTo(o2.getValue()) :
+o2.getValue().compareTo(o1.getValue()) == 0 ?
+o2.getKey().compareTo(o1.getKey()) : o2.getValue().compareTo(o1.getValue()));
+return list.stream().collect(Collectors.toMap(Entry::getKey, Entry::getValue,
+(a, b) -> b, LinkedHashMap::new));
+
 }*/
-/*System.out.println(sex_pref);
-*/
-/*}*/
-/*}*/
-
-/*Lead ld = ofy().load().type(Lead.class).id(1l).now();
-
-double latitude = ld.getLatitude();
-double longitude = ld.getLongitude();
-String course = ld.getCourse();
-String subject = ld.getSubject();
-String sex_pref = ld.getSex_pref();*/
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/*HttpSession session=req.getSession();
-
-String tut_i=req.getParameter("tutorid");
-String contac=req.getParameter("tutor_contact");
-String tutor_name=req.getParameter("tutor_name");
-String latitud=req.getParameter("tutor_latitude");
-String longitud=req.getParameter("tutor_longitude");
-String radiu=req.getParameter("tutor_radius");
-String area=req.getParameter("tutor_area");
-String active_paid_member=req.getParameter("paid_member");
-String gender=req.getParameter("tutor_gender");
-String last_logi=req.getParameter("tutor_last_login");
-
-long tut_id=Long.parseLong(tut_i);
-long contact=Long.parseLong(contac);
-double latitude=Double.parseDouble(latitud);
-double longitude=Double.parseDouble(longitud);
-System.out.println(latitude);
-System.out.println(longitude);
-int radius=Integer.parseInt(radiu);
-long last_login=Long.parseLong(last_logi);
-TutorDetail tut=new TutorDetail(tut_id, contact, tutor_name, latitude,longitude,radius, area, active_paid_member, gender, last_login);
-	
-ofy().save().entity(tut).now();
-
-long enquiry_id=1;
-
-Lead ld=ofy().load().type(Lead.class).id(enquiry_id).now();
-
-double latitude1=ld.getLatitude();
-double longitude1=ld.getLongitude();
-
-
-System.out.println(latitude1);
-System.out.println(longitude1);
-double d=Distance.distance(latitude,longitude,latitude1,longitude1);
-
-double distance =(d/1000);
-System.out.println(distance);
-System.out.println(tut.getRadius());
-
-
-if(distance<tut.getRadius())
-{  
-System.out.println(tut.getName());
-}
-*/
-
 
 
 

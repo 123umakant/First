@@ -1,10 +1,11 @@
-<!-- Indices written at Tue, 5 Feb 2019 18:15:52 IST -->
+<!-- Indices written at Wed, 6 Feb 2019 17:07:15 IST -->
 
 <datastore-indexes>
 
     <!-- Used 1 time in query history -->
     <datastore-index kind="MemberSubjects" ancestor="false" source="auto">
         <property name="course" direction="asc"/>
+        <property name="gender" direction="asc"/>
         <property name="subject" direction="asc"/>
         <property name="lat" direction="asc"/>
     </datastore-index>

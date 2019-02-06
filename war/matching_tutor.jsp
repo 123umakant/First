@@ -452,7 +452,7 @@
     <li>
         <a href="requirements.jsp">
         <div class="iconholder green"><img class="imag" src="../images/requirements.png" width="40" height="40"></div>
-        <div class="txt_holder"><span>2</span> Requirements Posted</div>
+        <div class="txt_holder"><span><%=session.getAttribute("Enquiry_Count") %></span> Requirements Posted</div>
         </a>
     </li>
     <li>

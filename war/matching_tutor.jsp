@@ -38,11 +38,11 @@
     
     
     
-    <!-- start-smoth-scrolling -->
+    <!-- start-smooth-scrolling -->
 	<script type="text/javascript" async  src="../js/move-top.js"></script>
 	<script type="text/javascript" async src="../js/easing.js"></script>
 	<script type="text/javascript" async src="../js/subjects.js"></script>
-	<!-- //end-smoth-scrolling -->
+	<!-- //end-smooth-scrolling -->
 	
 	<!-- animated-css -->
 	<link href="../css/animate.css" rel="stylesheet" type="text/css" media="all">
@@ -1230,9 +1230,10 @@
 
 
 
-
+<% String enq_id = request.getParameter("id"); %>
+<% System.out.print(enq_id);%>
     
-    <script>
+ <script>
     
     // ===== Scroll to Top ==== 
 $(window).scroll(function() {
@@ -1251,7 +1252,7 @@ $('#return-to-top').click(function() {      // When arrow is clicked
     
     
     
-    </script>
+</script>
         
 <script>
 $(window).on("load",function(){
@@ -1265,8 +1266,6 @@ $(window).on("load",function(){
     
         
 });
-
-
 
 </script>
         

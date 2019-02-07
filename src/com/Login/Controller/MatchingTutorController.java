@@ -3,6 +3,7 @@ package com.Login.Controller;
 import static com.Login.database.OfyService.ofy;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.Login.Entity.Lead;
 import com.Login.Entity.MemberSubjects;
 import com.Login.Entity.TutorDetail;
 
@@ -27,14 +29,24 @@ public class MatchingTutorController extends HttpServlet {
 public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
 {
 
-String latitud = req.getParameter("latitude");
-String longitud = req.getParameter("longitude");
-String course = req.getParameter("course");
-String subject = req.getParameter("subject");
-String sex_pref = req.getParameter("sex_pref");
+String enq_i = req.getParameter("id");
 
-double latitude = Double.parseDouble(latitud);
-double longitude = Double.parseDouble(longitud);
+System.out.println(enq_i);
+
+long enq_id = Long.parseLong(enq_i);
+
+Lead ld = ofy().load().type(Lead.class).id(enq_id).now();
+
+double latitude = ld.getLatitude();
+double longitude = ld.getLongitude();
+String course = ld.getCourse();
+String subject = ld.getSubject();
+String sex_pref = ld.getSex_pref();
+
+/*double latitude = Double.parseDouble(latitud);
+double longitude = Double.parseDouble(longitud);*/
+
+PrintWriter out = res.getWriter();
 
 int km =2;
 
@@ -50,11 +62,11 @@ System.out.println(from_latitude);
 System.out.println(to_latitude);
 
 System.out.println(from_longitude);
-System.out.println(from_longitude);
+/*System.out.println(from_longitude);*/
 
 HashMap<Long,Float> hmap = new HashMap<Long,Float>();
-JSONObject json = new JSONObject();
 
+JSONObject json = new JSONObject();
 JSONArray jsonarray = new JSONArray();
 
 List<MemberSubjects> ms=null;
@@ -110,6 +122,8 @@ km = km+1;
 
 for (long contact:hmap.keySet())
 {
+	
+JSONObject js = new JSONObject();	
 long tutor_contact = contact;
 
 TutorDetail tut = ofy().load().type(TutorDetail.class).id(contact).now();
@@ -122,22 +136,36 @@ int experience = tut.getExperience();
 String last_login = tut.getLastactivedate();
 String area = tut.getArea();
 
-String distance = " ";
-json.put("tutor_contact",tutor_contact);
-json.put("tutor_name",name);
-json.put("tutor_age",age);
-json.put("tutor_gender",gender);
-json.put("tutor_qualification", qualification);
-json.put("tutor_experience", experience);
-json.put("tutor_last_login",last_login);
-json.put("tutor_area", area);
+double tutor_latitude = tut.getLatitude();
+double tutor_longitude = tut.getLongitude();
+
+
+double tutor_distance =(distance(latitude,longitude,tutor_latitude,tutor_longitude)/1000);
+
+System.out.println(tutor_distance);
+
+js.put("tutor_contact",tutor_contact);
+js.put("tutor_name",name);
+js.put("tutor_age",age);
+js.put("tutor_gender",gender);
+js.put("tutor_qualification", qualification);
+js.put("tutor_experience", experience);
+js.put("tutor_last_login",last_login);
+js.put("tutor_area", area);
+js.put("tutor_distance",tutor_distance);
 
 System.out.println("Contact No :" +contact);
 	
+jsonarray.put(js);
+
 }
 	
+json.put("tutor_details",jsonarray);
 
-jsonarray.put(json);
+out.print(json.toString());
+
+
+
 
 }// End of Post
 
@@ -153,10 +181,7 @@ public static double distance(double lat1, double lon1, double lat2,
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	    double distance = R * c * 1000; // convert to meters
 
-	    
-
-	    
-
+	   
 	    return distance;
 }
 

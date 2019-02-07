@@ -19,7 +19,7 @@
 	<meta name="theme-color" content="#43c0f6">
 	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="../js/jquery-1.11.0.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<!-- Custom Theme files -->
 	<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -46,11 +46,11 @@
     
     
     
-    <!-- start-smoth-scrolling -->
+    <!-- start-smooth-scrolling -->
 	<script type="text/javascript" async  src="../js/move-top.js"></script>
 	<script type="text/javascript" async src="../js/easing.js"></script>
 	<script type="text/javascript" async src="../js/subjects.js"></script>
-	<!-- //end-smoth-scrolling -->
+	<!-- //end-smooth-scrolling -->
 	
 	<!-- animated-css -->
 	<link href="../css/animate.css" rel="stylesheet" type="text/css" media="all">
@@ -1261,6 +1261,29 @@ $('#return-to-top').click(function() {      // When arrow is clicked
     
     
 </script>
+
+<script>
+
+$(document).ready(function(){
+	
+var currentId = 1;	
+
+	$.ajax({
+		
+		type:"POST",
+		url:"/matchingtutor",
+		data:{"id":currentId},
+	    success:function(data){
+	    	
+	    alert("Hello");
+	    }		
+		});
+	
+});
+
+</script>
+
+
 </body>
 </html>
 </body>

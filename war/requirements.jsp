@@ -46,11 +46,11 @@
     
     
     
-    <!-- start-smoth-scrolling -->
+    <!-- start-smooth-scrolling -->
 	<script type="text/javascript" async  src="../js/move-top.js"></script>
 	<script type="text/javascript" async src="../js/easing.js"></script>
 	<script type="text/javascript" async src="../js/subjects.js"></script>
-	<!-- //end-smoth-scrolling -->
+	<!-- //end-smooth-scrolling -->
 	
 	<!-- animated-css -->
 	<link href="../css/animate.css" rel="stylesheet" type="text/css" media="all">
@@ -748,7 +748,7 @@ function ajaxcall(data)
     	             {
     			    var newid=arr[i].id;
     			   
-    	            code=code+"<div id=\"\"><div class=\"brd-box selected-brd-box"+newid+"\" ><div class=\"row selected-row"+newid+"\" ><div class=\"col-lg-12 borderneeded\"> <div class=\"col-lg-8 paddingneeded mobileview\"><h3>Tutor Requirement for "+arr[i].subject+" in "+arr[i].cls+" </h3></div> <div class=\"col-lg-4 posted paddingneeded\"> <img class=\"imag\" src=\"../images/time1.jpg\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\">Posted on:"+arr[i].date+"</a> </div> </div> <div class=\"col-lg-12 marginneeded\"> <div class=\"col-lg-6 paddingneeded\"><img class=\"imag\" src=\"../images/match.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"matching_tutor.jsp#matched\">Matching Tutors <span class=\"badge\">10</span></a></div> <div class=\"col-lg-6 responded paddingneeded\"><img class=\"imag\" src=\"../images/responded.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"matching_tutor.jsp#responded\">Responded Tutors <span class=\"badge\">3</span></a></div> </div> <div class=\"col-lg-12\"> <div class=\"col-lg-6 paddingneeded\"><img class=\"imag\" src=\"../images/edit.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\" data-toggle=\"modal\" class=\"editid\" id=\""+newid+"\" data-target=\"#myModal\">Edit Post</a></div> <div class=\"col-lg-6 closed paddingneeded\"><img class=\"imag\" src=\"../images/close.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\" data-toggle=\"modal\" class=\"newid\" id=\""+newid+"\"  data-target=\"#smallModal\">Close Post&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; </a></div> </div> </div> <button class=\"btn btn-success selected-repost-btn"+newid+" repost-btn\" style=\"display:none;\" id=\""+newid+"\">Repost this requirement</button> </div> ";
+    	            code=code+"<div id=\"\"><div class=\"brd-box selected-brd-box"+newid+"\" ><div class=\"row selected-row"+newid+"\" ><div class=\"col-lg-12 borderneeded\"> <div class=\"col-lg-8 paddingneeded mobileview\"><h3>Tutor Requirement for "+arr[i].subject+" in "+arr[i].cls+" </h3></div> <div class=\"col-lg-4 posted paddingneeded\"> <img class=\"imag\" src=\"../images/time1.jpg\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\">Posted on:"+arr[i].date+"</a> </div> </div> <div class=\"col-lg-12 marginneeded\"> <div class=\"col-lg-6 paddingneeded\"><img class=\"imag\" src=\"../images/match.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"matching_tutor.jsp#matched\? value="+newid+"\">Matching Tutors <span class=\"badge\">10</span></a></div> <div class=\"col-lg-6 responded paddingneeded\"><img class=\"imag\" src=\"../images/responded.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"matching_tutor.jsp#responded\">Responded Tutors <span class=\"badge\">3</span></a></div> </div> <div class=\"col-lg-12\"> <div class=\"col-lg-6 paddingneeded\"><img class=\"imag\" src=\"../images/edit.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\" data-toggle=\"modal\" class=\"editid\" id=\""+newid+"\" data-target=\"#myModal\">Edit Post</a></div> <div class=\"col-lg-6 closed paddingneeded\"><img class=\"imag\" src=\"../images/close.png\" width=\"30\" height=\"30\">&nbsp; <a href=\"#\" data-toggle=\"modal\" class=\"newid\" id=\""+newid+"\"  data-target=\"#smallModal\">Close Post&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; </a></div> </div> </div> <button class=\"btn btn-success selected-repost-btn"+newid+" repost-btn\" style=\"display:none;\" id=\""+newid+"\">Repost this requirement</button> </div> ";
     	           
     	            
    	             //    alert(newid);
@@ -901,20 +901,7 @@ alert(editId);
 		{
 		$("#start_time").val(start_time);
 		}
-/*
-	    if (monthly_budget=="Rs.5400 - 6000 (20 Sessions in month)")
-	    {
-		$("#a").prop("checked",true);
-	     }
-	    else if (monthly_budget=="Rs.6000 - 6600 (20 Sessions in month)")
-	    {
-	    $("#b").prop("checked",true);
-	    }
-	    else if (monthly_budget=="Rs.6600-8000 (20 Sessions in month)")
-	    {
-	    $("#c").prop("checked",true);
-	    }
-*/
+	    
 		}	
 	});
 }

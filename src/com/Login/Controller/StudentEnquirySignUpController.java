@@ -29,6 +29,7 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	String cls=req.getParameter("class");
 	String subject=req.getParameter("subject");
 	String address=req.getParameter("address");
+	String course=req.getParameter("course");
 	String contact=req.getParameter("contact");
 	String email=req.getParameter("email");
 	String date=req.getParameter("date");
@@ -37,16 +38,18 @@ public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOExcep
 	String fees=req.getParameter("MonthlyBudget");
 	String start_time=req.getParameter("start_time");
 	String message= req.getParameter("message");
-	String[] mode=req.getParameterValues("LearningType");
+	String[] teachingmode=req.getParameterValues("LearningType");
 	String latitud=req.getParameter("latitude");
 	String longitud=req.getParameter("longitude");
 	String area=req.getParameter("area");
-	String sex_prefe=req.getParameter("sex_pref");
+	String sex_pref=req.getParameter("sex_pref");
 	double latitude=Double.parseDouble(latitud);
 	double longitude=Double.parseDouble(longitud);
-
 	
-	Lead ld=new Lead(enq_id, name, date, email, cls, subject, address, sex_prefe, contact, alt_contact, fees, mode, longitude, latitude, start_time, message, area);
+	Lead ld = new Lead("north", enq_id, name, date,"pincode", area, email," ", cls, subject, address, sex_pref," ", contact, alt_contact, fees," "," "," ", latitude, longitude," ", " ", teachingmode, " ", 1548979200000l,course);
+	
+	
+	
 	ofy().save().entity(ld).now();	
 
 	
